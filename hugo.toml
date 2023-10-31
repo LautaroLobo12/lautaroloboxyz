@@ -1,4 +1,49 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://lautarolobo.xyz'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'Hugo'
 theme = 'mini'
+defaultContentLanguage = 'en'
+hasCJKLanguage = true
+paginate = 3
+# googleAnalytics = 'your-google-analytics-id'
+# disqusShortname = 'your-disqus-shortname'
+
+[permalinks]
+posts = '/posts/:title/'
+
+[markup.highlight]
+guessSyntax = true
+style = 'emacs'
+
+[markup.tableOfContents]
+endLevel = 3
+ordered = false
+startLevel = 2
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[social]
+github = 'your-github-link'
+twitter = 'your-github-link'
+stackoverflow = 'your-github-link'
+
+[params]
+bio = 'Software Engineer'
+description = 'My Blog'
+# just for enabling rss button, index.xml is still generated
+enableRSS = false
+enableComments = false
+enableGoogleAnalytics = false
+showToc = true
+showPowerBy = true
+math = true
+hiddenPostSummaryInHomePage = true
+copyright = '© Lautaro Lobo 2023'
+[links]
+[customCSS]
+[customJS]
+
+[params.author]
+email = 'contact@lautarolobo.xyz'
+name = 'Lautaro Lobo'

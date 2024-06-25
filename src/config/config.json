@@ -4,12 +4,12 @@
     "base_url": "https://lautarolobo.xyz/",
     "base_path": "/",
     "trailing_slash": false,
-    "favicon": "/images/favicon.png",
+    "favicon": "/images/favicon.ico",
     "logo": "/images/logo.png",
     "logo_darkmode": "/images/logo.png",
     "logo_width": "150",
     "logo_height": "30",
-    "logo_text": "Astroplate"
+    "logo_text": "Lautaro Lobo"
   },
 
   "settings": {
@@ -17,8 +17,8 @@
     "sticky_header": true,
     "theme_switcher": true,
     "default_theme": "system",
-    "pagination": 2,
-    "summary_length": 200,
+    "pagination": 6,
+    "summary_length": 0,
     "blog_folder": "blog"
   },
 

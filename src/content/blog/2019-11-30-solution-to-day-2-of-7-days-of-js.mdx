@@ -8,23 +8,23 @@ author: Lautaro Lobo
 
 Let's see. First of all a solution using a while loop:
 
-~~~javascript
+```javascript
 function sumboth(array) \{
   let count = array.length;
   let i = 0, even = 0, odd = 0;
   while (i < count) \{
     array[i] % 2 == 0 ? even += array[i] : odd += array[i];
-    i++;  
+    i++;
   }
   return \{even, odd};
 }
 
 console.log(sumboth([3,1,6,2]))
-~~~
+```
 
 And as a second choice, a solution using a for loop:
 
-~~~javascript
+```javascript
 function sumboth2(array) \{
   let count = array.length;
   let even = 0, odd = 0;
@@ -35,13 +35,13 @@ function sumboth2(array) \{
 }
 
 console.log(sumboth2([3,1,4,2]))
-~~~
+```
 
 I've used the conditional (ternary) operator:
 
-~~~javascript
+```javascript
 condition ? inCaseIsTrue : inCaseIsFalse;
-~~~
+```
 
 You can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator" target="_blank" title="conditional (ternary) operator">here</a>.
 

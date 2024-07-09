@@ -22,9 +22,9 @@ A co-marketing deal between Netscape and Sun.
 
 In fact, Oracle acquired Sun Microsystems in 2009, so "JAVASCRIPT" is a trademark of Oracle. How crazy is that?
 
-In 1997, ECMAScript was born. But what is ECMAScript? It's a standard, a specification of a programming language, published by ECMA (European Computer Manufacturers Association) International. So JavaScript is a dialect of the ECMAScript standard. 
+In 1997, ECMAScript was born. But what is ECMAScript? It's a standard, a specification of a programming language, published by ECMA (European Computer Manufacturers Association) International. So JavaScript is a dialect of the ECMAScript standard.
 
-That's right, ECMAScript *defines* a programming language, and JavaScript *is* the programming language. 
+That's right, ECMAScript _defines_ a programming language, and JavaScript _is_ the programming language.
 
 There were different versions of the standard since it first came out. Today, every modern web browser supports ECMAScript 5.1, and almost everyone supports the latest version, ECMAScript 6. Newer versions are still in the early stages of development.
 
@@ -38,26 +38,36 @@ For a more-of-a-timeline of the history of JavaScript, check:
 
 When using JS, you may find some weird stuff going one, like that NaN (which stands for Not a Number) it's a... number:
 
-~~~javascript
-console.log(typeof(NaN)) // number
-~~~
+```javascript
+console.log(typeof NaN); // number
+```
 
 And NaN it's not NaN ¿?
 
-~~~javascript
-console.log(NaN === NaN) // false
-~~~
+```javascript
+console.log(NaN === NaN); // false
+```
 
 And that NaN is an infinite number. Wait... what?
 
-~~~javascript
-console.log(isFinite(NaN)) // false
-~~~
+```javascript
+console.log(isFinite(NaN)); // false
+```
 
 And you know what's the weirdest part? You should expect JS to behave like this! I mean, this is all on the specs.
 
-
-<center><a href="https://giphy.com/gifs/CDJo4EgHwbaPS"><iframe src="https://giphy.com/embed/CDJo4EgHwbaPS" width="480" height="254" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></a></center>
+<center>
+  <a href="https://giphy.com/gifs/CDJo4EgHwbaPS">
+    <iframe
+      src="https://giphy.com/embed/CDJo4EgHwbaPS"
+      width="480"
+      height="254"
+      frameBorder="0"
+      class="giphy-embed"
+      allowFullScreen
+    ></iframe>
+  </a>
+</center>
 
 You can take a look at more weird stuff here:
 
@@ -67,7 +77,7 @@ You can take a look at more weird stuff here:
 
 As I said before, there are some newer versions of the ECMAScript standard on development. But in so early stages that we shouldn't expect JS to change much anytime soon.
 
-After all, you can already use JS on almost anything: Videogames, AI, Back-End, Front-End, Art, Data Analytics... 
+After all, you can already use JS on almost anything: Videogames, AI, Back-End, Front-End, Art, Data Analytics...
 
 And many frameworks and libraries are popping up every day. [Svelte](https://svelte.dev/) has changed the paradigm of website rendering. There's this thing called [CSS-in-JS](https://cssinjs.org/?v=v10.0.3). You can even write Artificial Neural Networks with [Tensorflow.js](https://www.tensorflow.org/js), develop videogames with [Babylon.js](https://github.com/BabylonJS/Babylon.js), make art using [p5.js](https://p5js.org/), [automate stuff with NodeJS](https://medium.com/dailyjs/how-i-automated-my-job-with-node-js-94bf4e423017), [even make charts based on .csv files!](https://observablehq.com/@dakoop/learn-js-data)
 
@@ -77,9 +87,9 @@ So yeah, it's a smart move to learn JavaScript. It's used all around the web and
 
 It seems like JS is staying with us for a while.
 
-***
+---
 
-Hey, thanks for reading until this far! If you are starting your journey on JavaScript, or just want to train yourself a bit, check my [#7DaysJS Challenge!](https://lautarolobo.xyz/blog/7-days-of-js-factorial-and-average/) 
+Hey, thanks for reading until this far! If you are starting your journey on JavaScript, or just want to train yourself a bit, check my [#7DaysJS Challenge!](https://lautarolobo.xyz/blog/7-days-of-js-factorial-and-average/)
 
 See ya!
 

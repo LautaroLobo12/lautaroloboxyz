@@ -8,7 +8,7 @@ author: Lautaro Lobo
 
 When writing this solution, I realized that I needed a function that returns `true` if a number is prime. So I wrote that function first:
 
-~~~javascript
+```javascript
 function isPrime(n)\{
   let i = 2, rem = true;
   while (i < n && rem)\{
@@ -19,11 +19,11 @@ function isPrime(n)\{
 }
 
 console.log(isPrime(17))
-~~~
+```
 
 And once I had that, I was ready to write primesUntil, which you can see here:
 
-~~~javascript
+```javascript
 function primesUntil(n)\{
   let x = 1, i = 0;
   while(i < n)\{
@@ -37,7 +37,7 @@ function primesUntil(n)\{
 }
 
 console.log(primesUntil(5))
-~~~
+```
 
 It's possible to write both functions with for loops instead of while loops. If you are just starting out with loops in JavaScript, you should try to do that.
 

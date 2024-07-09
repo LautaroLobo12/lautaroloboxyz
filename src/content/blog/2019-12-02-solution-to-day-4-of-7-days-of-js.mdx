@@ -8,19 +8,19 @@ author: Lautaro Lobo
 
 So, first the shortest solution:
 
-~~~javascript
+```javascript
 function reverseString(string) \{
   return string.split('').reverse().join('');
 }
 
 console.log(reverseString('Japan'))
-~~~ 
+```
 
 I've used 3 methods here: `split()`, `reverse()` and `join()`. The split method turns the string into an array of characters, then I use the reverse method, that reverses (duh) the array, and then I take the array of characters and make it look again like a string.
 
 Then I cracked my head up to make it work with a for loop:
 
-~~~javascript
+```javascript
 function reverseString(string) \{
   let length = string.length - 1;
   let output = '';
@@ -30,14 +30,14 @@ function reverseString(string) \{
 }
 
 console.log(reverseString('Bananas'))
-~~~
+```
 
 And also implemented this same algorithm as a while loop:
 
-~~~javascript
+```javascript
 function reverse(string) \{
   let output = '';
-  let i = string.length - 1; 
+  let i = string.length - 1;
   while (i >= 0)\{
     output += string[i];
     i--;
@@ -46,7 +46,7 @@ function reverse(string) \{
 }
 
 console.log(reverse('goodbye'))
-~~~
+```
 
 Do you have any questions? Write a comment!
 

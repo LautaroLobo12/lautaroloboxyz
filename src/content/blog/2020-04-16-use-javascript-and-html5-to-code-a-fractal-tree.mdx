@@ -15,13 +15,13 @@ Fractals, those enigmatic figures that are everywhere, but can not be seen by th
 <ul>
 
 <li>
-    <a href="#h2-1">What is a Fractal Tree?</a>
+  <a href="#h2-1">What is a Fractal Tree?</a>
 </li>
 <li>
-    <a href="#h2-2">Writing the Fractal Tree in Vainilla JS</a>
+  <a href="#h2-2">Writing the Fractal Tree in Vainilla JS</a>
 </li>
 <li>
-    <a href="#h2-3">Beyond the Fractal Tree</a>
+  <a href="#h2-3">Beyond the Fractal Tree</a>
 </li>
 
 </ul>
@@ -32,7 +32,7 @@ Fractals, those enigmatic figures that are everywhere, but can not be seen by th
 
 To define a Fractal Tree first we must know the definition of Fractal, of course.
 
-Fractals are never-ending patterns created by repeating mathematical equations, which on any scale, on any level of zoom, look roughly the same. In other words, a geometric object which's basic structure, rough or fragmented, repites itself in different scales. 
+Fractals are never-ending patterns created by repeating mathematical equations, which on any scale, on any level of zoom, look roughly the same. In other words, a geometric object which's basic structure, rough or fragmented, repites itself in different scales.
 
 So if we split a Fractal, we'll see a reduced-size copy of the whole.
 
@@ -52,16 +52,17 @@ Here are some examples:
 <p><table><td><center>Sierpinski Carpet</center></td></table></p>
 </center>
 
-Now, what is a Fractal Tree? 
+Now, what is a Fractal Tree?
 
-Imagine a branch, and branches coming out of it, and then two branches coming out of each branch, and so on... that's what a Fractal Tree looks like. 
+Imagine a branch, and branches coming out of it, and then two branches coming out of each branch, and so on... that's what a Fractal Tree looks like.
 
-Its form comes from the Sierpinski triangle (or Sierpinski gasket). 
+Its form comes from the Sierpinski triangle (or Sierpinski gasket).
 
 As you can see, one becomes the other when changing the angle between branches:
 
 <center>
-![From Sierpinski Triangle to Fractal Tree](https://upload.wikimedia.org/wikipedia/commons/a/a9/Fractal_tree.gif)
+  ![From Sierpinski Triangle to Fractal
+  Tree](https://upload.wikimedia.org/wikipedia/commons/a/a9/Fractal_tree.gif)
 </center>
 
 Today we'll end up with a figure similar to the final form of that gif.
@@ -70,46 +71,44 @@ Today we'll end up with a figure similar to the final form of that gif.
 
 First of all, here's the final product (you can tweak it along the way):
 
-<center>
-![Final Fractal Tree](/images/fractalTree.webp)
-</center>
+<center>![Final Fractal Tree](/images/fractalTree.webp)</center>
 
 Now let's draw that, step by step.
 
 First of all, we initialize our index.html file, with a canvas of any reasonable dimensions, and a script tag where all our JS code will be.
 
-~~~html
-<!DOCTYPE html>
+```html
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
     <canvas id="my_canvas" width="1000" height="800"></canvas>
     <script></script>
-</body>
+  </body>
 </html>
-~~~
+```
 
 Then, we start writing our JavaScript.
 
 We initialize our canvas element on JS, by accessing it through the myCanvas variable and creating the 2D rendering context with the ctx (context) variable.
 
-~~~html
-<!DOCTYPE html>
+```html
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
     <canvas id="my_canvas" width="1000" height="800"></canvas>
     <script>
-    var myCanvas = document.getElementById("my_canvas");
-    var ctx = myCanvas.getContext("2d");
+      var myCanvas = document.getElementById("my_canvas");
+      var ctx = myCanvas.getContext("2d");
     </script>
-</body>
+  </body>
 </html>
-~~~
+```
 
 So yeah, the getContext method adds properties and methods that allow you to draw, in this case, in 2D.
 
@@ -121,176 +120,174 @@ In other words, when a branch is long enough, attach two smaller branches to it.
 
 It kinda sounds like we shall use some recursive statement somewhere, isn't it?
 
-Back to the code, we now define our function ```fractalTree``` that should take at least four arguments: the X and Y coordinates where the branch starts, the length of its branch and its angle.
+Back to the code, we now define our function `fractalTree` that should take at least four arguments: the X and Y coordinates where the branch starts, the length of its branch and its angle.
 
 Inside our function, we begin the drawing with the beginPath() method, and then save the state of the canvas with the save() method.
 
-~~~html
-<!DOCTYPE html>
+```html
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
     <canvas id="my_canvas" width="1000" height="800"></canvas>
     <script>
-    var myCanvas = document.getElementById("my_canvas");
-    var ctx = myCanvas.getContext("2d");
-    function draw(startX, startY, len, angle) \{
-        ctx.beginPath();
-        ctx.save();
-    }        
+      var myCanvas = document.getElementById("my_canvas");
+      var ctx = myCanvas.getContext("2d");
+      function draw(startX, startY, len, angle) \{
+          ctx.beginPath();
+          ctx.save();
+      }
     </script>
-</body>
+  </body>
 </html>
-~~~
+```
 
 The beginPath method is often used when you start a new line or figure that has a fixed style, like the same color along the entire line, or the same width. The save method just saves the entire state of the canvas by pushing the current state onto a stack.
 
 Now we'll draw our Fractal Tree, by drawing a line (branch), rotating the canvas and drawing the next branch, and so on. It goes like this (I'll explain each method below the code sample):
 
-~~~html
-<!DOCTYPE html>
+```html
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
     <canvas id="my_canvas" width="1000" height="800"></canvas>
     <script>
-    var myCanvas = document.getElementById("my_canvas");
-    var ctx = myCanvas.getContext("2d");
-    function draw(startX, startY, len, angle) \{
-        ctx.beginPath();
-        ctx.save();
+      var myCanvas = document.getElementById("my_canvas");
+      var ctx = myCanvas.getContext("2d");
+      function draw(startX, startY, len, angle) \{
+          ctx.beginPath();
+          ctx.save();
 
-        ctx.translate(startX, startY);
-        ctx.rotate(angle * Math.PI/180);
-        ctx.moveTo(0, 0);
-        ctx.lineTo(0, -len);
-        ctx.stroke();
+          ctx.translate(startX, startY);
+          ctx.rotate(angle * Math.PI/180);
+          ctx.moveTo(0, 0);
+          ctx.lineTo(0, -len);
+          ctx.stroke();
 
-        if(len < 10) \{
-            ctx.restore();
-            return;
-        }
+          if(len < 10) \{
+              ctx.restore();
+              return;
+          }
 
-        draw(0, -len, len*0.8, -15);
-        draw(0, -len, len*0.8, +15);
-  
-        ctx.restore();
-    }
-    draw(400, 600, 120, 0)       
+          draw(0, -len, len*0.8, -15);
+          draw(0, -len, len*0.8, +15);
+
+          ctx.restore();
+      }
+      draw(400, 600, 120, 0)
     </script>
-</body>
+  </body>
 </html>
-~~~
+```
 
-So we first add three methods, translate, rotate and moveTo, which 'moves' the canvas, its origin and our 'pencil' so we can draw the branch in our desired angle. It's like we are drawing a branch, then centering this branch (by moving the hole canvas) and then drawing a new brand from the end of our previous branch. 
+So we first add three methods, translate, rotate and moveTo, which 'moves' the canvas, its origin and our 'pencil' so we can draw the branch in our desired angle. It's like we are drawing a branch, then centering this branch (by moving the hole canvas) and then drawing a new brand from the end of our previous branch.
 
-The last two methods before the if statement are lineTo and stroke, the first adds a straight line to the current path and the second one renders it, you can think of it like this: lineTo gives the order and stroke executes it. 
+The last two methods before the if statement are lineTo and stroke, the first adds a straight line to the current path and the second one renders it, you can think of it like this: lineTo gives the order and stroke executes it.
 
-Now we have an if statement that tells when to stop the recursion, when to stop drawing. The restore method, as stated in the [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/restore), "restores the most recently saved canvas state by popping the top entry in the drawing state stack".  
+Now we have an if statement that tells when to stop the recursion, when to stop drawing. The restore method, as stated in the [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/restore), "restores the most recently saved canvas state by popping the top entry in the drawing state stack".
 
 After the if statement we have the recursive call, and another call to the restore method. And then a call to the function that we just finished.
 
 Now run the code in your browser. You'll see, finally, a Fractal Tree!
 
-<center>
-![Fractal Tree First Iteration](/images/fractalTree1.webp)
-</center>
+<center>![Fractal Tree First Iteration](/images/fractalTree1.webp)</center>
 
 Awesome, right? Now let's make it even better.
 
 We'll add a new parameter to our draw function, branchWidth, to make our Fractal Tree more realistic.
 
-~~~html
-<!DOCTYPE html>
+```html
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
     <canvas id="my_canvas" width="1000" height="800"></canvas>
     <script>
-    var myCanvas = document.getElementById("my_canvas");
-    var ctx = myCanvas.getContext("2d");
-    function draw(startX, startY, len, angle, branchWidth) \{
-        ctx.lineWidth = branchWidth;
-        
-        ctx.beginPath();
-        ctx.save();
+      var myCanvas = document.getElementById("my_canvas");
+      var ctx = myCanvas.getContext("2d");
+      function draw(startX, startY, len, angle, branchWidth) \{
+          ctx.lineWidth = branchWidth;
 
-        ctx.translate(startX, startY);
-        ctx.rotate(angle * Math.PI/180);
-        ctx.moveTo(0, 0);
-        ctx.lineTo(0, -len);
-        ctx.stroke();
+          ctx.beginPath();
+          ctx.save();
 
-        if(len < 10) \{
-            ctx.restore();
-            return;
-        }
+          ctx.translate(startX, startY);
+          ctx.rotate(angle * Math.PI/180);
+          ctx.moveTo(0, 0);
+          ctx.lineTo(0, -len);
+          ctx.stroke();
 
-        draw(0, -len, len*0.8, angle-15, branchWidth*0.8);
-        draw(0, -len, len*0.8, angle+15, branchWidth*0.8);
-  
-        ctx.restore();
-    }
-    draw(400, 600, 120, 0, 10)       
+          if(len < 10) \{
+              ctx.restore();
+              return;
+          }
+
+          draw(0, -len, len*0.8, angle-15, branchWidth*0.8);
+          draw(0, -len, len*0.8, angle+15, branchWidth*0.8);
+
+          ctx.restore();
+      }
+      draw(400, 600, 120, 0, 10)
     </script>
-</body>
+  </body>
 </html>
-~~~
+```
 
 So in every iteration, we are making each branch thinner. I've also changed the angle paramater in the recursive call, to make a more "open" tree.
 
 Now, let's add some color! And shadows, why not.
 
-~~~html
-<!DOCTYPE html>
+```html
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
     <canvas id="my_canvas" width="1000" height="800"></canvas>
     <script>
-    var myCanvas = document.getElementById("my_canvas");
-    var ctx = myCanvas.getContext("2d");
-    function draw(startX, startY, len, angle, branchWidth) \{
-        ctx.lineWidth = branchWidth;
-        
-        ctx.beginPath();
-        ctx.save();
+      var myCanvas = document.getElementById("my_canvas");
+      var ctx = myCanvas.getContext("2d");
+      function draw(startX, startY, len, angle, branchWidth) \{
+          ctx.lineWidth = branchWidth;
 
-        ctx.strokeStyle = "green";
-        ctx.fillStyle = "green";
+          ctx.beginPath();
+          ctx.save();
 
-        ctx.translate(startX, startY);
-        ctx.rotate(angle * Math.PI/180);
-        ctx.moveTo(0, 0);
-        ctx.lineTo(0, -len);
-        ctx.stroke();
+          ctx.strokeStyle = "green";
+          ctx.fillStyle = "green";
 
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = "rgba(0,0,0,0.8)";
+          ctx.translate(startX, startY);
+          ctx.rotate(angle * Math.PI/180);
+          ctx.moveTo(0, 0);
+          ctx.lineTo(0, -len);
+          ctx.stroke();
 
-        if(len < 10) \{
-            ctx.restore();
-            return;
-        }
+          ctx.shadowBlur = 15;
+          ctx.shadowColor = "rgba(0,0,0,0.8)";
 
-        draw(0, -len, len*0.8, angle-15, branchWidth*0.8);
-        draw(0, -len, len*0.8, angle+15, branchWidth*0.8);
-  
-        ctx.restore();
-    }
-    draw(400, 600, 120, 0, 10)       
+          if(len < 10) \{
+              ctx.restore();
+              return;
+          }
+
+          draw(0, -len, len*0.8, angle-15, branchWidth*0.8);
+          draw(0, -len, len*0.8, angle+15, branchWidth*0.8);
+
+          ctx.restore();
+      }
+      draw(400, 600, 120, 0, 10)
     </script>
-</body>
+  </body>
 </html>
-~~~
+```
 
 Both color methods are self-explanatory (strokeStyle and fillStyle). Also the shadow ones, shadowBlur and shadowColor.
 
@@ -306,11 +303,17 @@ p5.js is an Open Source JavaScript library made by artists, for artists, based i
 
 I've also found recently a website that makes a Fractal Tree in JS using L-Systems. Really cool. Take a look into [The Fractal Zone](https://thefractal.zone/)! Code is <a href="https://github.com/Rizz0S/the-fractal-zone" title="The Fractal Zone in GitHub">here</a> 🤓
 
-***
+---
 
 Well, that's it for now! Thanks for reading, comment any questions and see you in my next post! 🧔
 
-> <p style="font-size: 13px;">Cover by <a href="https://pixabay.com/users/socialtrendspr0-1358346/">socialtrendspr0</a> from <a href="https://pixabay.com">Pixabay</a></p>
+> <p style="font-size: 13px;">
+>   Cover by{" "}
+>   <a href="https://pixabay.com/users/socialtrendspr0-1358346/">
+>     socialtrendspr0
+>   </a>{" "}
+>   from <a href="https://pixabay.com">Pixabay</a>
+> </p>
 
 <script type="application/ld+json">
 \{

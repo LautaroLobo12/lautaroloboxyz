@@ -15,9 +15,9 @@ lscpu
 
 This command shows a lot of information about your PC, in fact, about your CPU architecture, displaying the number, model, family, and manufacturer ID of your CPU, together with the threads, cores, sockets, nodes and so on. You should search for the line that contains the Virtualization keyword (don't worry, it's easy to find).
 
-Actually that's it. That command *never* fails. But here are another options, because some times the unpredictable happens.
+Actually that's it. That command _never_ fails. But here are another options, because some times the unpredictable happens.
 
-With the next one, you'll get  'vmx' (Intel) or 'smv' (AMD) on the output. Hopefully colored.
+With the next one, you'll get 'vmx' (Intel) or 'smv' (AMD) on the output. Hopefully colored.
 
 ```
 egrep "(svm|vmx)" /proc/cpuinfo
@@ -29,7 +29,7 @@ If it doesn't shows those keywords with colors, don't worry, I got you covered:
 egrep --color -i "svm|vmx" /proc/cpuinfo
 ```
 
-Here, the last one. If nothing worked out, don't lose hope! This one will do the job. 
+Here, the last one. If nothing worked out, don't lose hope! This one will do the job.
 
 Some OS come with the cpu-checker package pre-installed. It may be not your case, so here's how you can installit, quick and easy with
 
@@ -37,7 +37,7 @@ Some OS come with the cpu-checker package pre-installed. It may be not your case
 sudo apt-get install cpu-checker
 ```
 
-And then, let the magic happens: 
+And then, let the magic happens:
 
 ```
 sudo kvm-ok

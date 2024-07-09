@@ -8,7 +8,7 @@ author: Lautaro Lobo
 
 I first wrote this code using the `push()` method:
 
-~~~javascript
+```javascript
 function sumToArray(n, array)\{
   let length = array.length;
   let output = []
@@ -19,11 +19,11 @@ function sumToArray(n, array)\{
 }
 
 console.log(sumToArray(5,[1,2,3,4]))
-~~~
+```
 
 Then, using concatenation:
 
-~~~javascript
+```javascript
 function sumToArray1(n, array)\{
   let length = array.length;
   let output = []
@@ -34,13 +34,13 @@ function sumToArray1(n, array)\{
 }
 
 console.log(sumToArray1(5,[2,3,5]))
-~~~
+```
 
 This returns a string, not an array.
 
 And finally, using the `map()` method:
 
-~~~javascript
+```javascript
 function sumToArray2(n, array)\{
   return array.map(function (element)\{
     return element + 2;
@@ -48,7 +48,7 @@ function sumToArray2(n, array)\{
 }
 
 console.log(sumToArray2(1,[7,13,2]))
-~~~
+```
 
 Any question? Write a comment!
 

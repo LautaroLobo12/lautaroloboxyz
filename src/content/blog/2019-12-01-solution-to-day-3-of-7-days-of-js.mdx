@@ -8,7 +8,7 @@ author: Lautaro Lobo
 
 I wrote first the solution using a while loop:
 
-~~~javascript
+```javascript
 function sign(array) \{
   let count = array.length;
   let i = 0, positives = 0, negatives = 0, zeros = 0;
@@ -16,21 +16,21 @@ function sign(array) \{
     if (array[i] === 0) \{
       zeros += 1;
     } if (array[i] > 0)\{
-      positives += 1; 
+      positives += 1;
     } if (array[i] < 0)\{
       negatives += 1;
     }
-    i++;  
+    i++;
   }
   return \{zeros, positives, negatives};
 }
 
 console.log(sign([-3,0,6,2]))
-~~~
+```
 
 And it works! Then, I wrote the same but with a for loop:
 
-~~~javascript
+```javascript
 function sign(array) \{
   let count = array.length;
   let positives = 0, negatives = 0, zeros = 0;
@@ -38,7 +38,7 @@ function sign(array) \{
     if (array[i] === 0) \{
       zeros += 1;
     } if (array[i] > 0)\{
-      positives += 1; 
+      positives += 1;
     } if (array[i] < 0)\{
       negatives += 1;
     }
@@ -47,7 +47,7 @@ function sign(array) \{
 }
 
 console.log(sign([3,-1,0,-2]))
-~~~
+```
 
 You may want to write this function using the `Math.sign()` method. You can read about it <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/sign" target="_blank" title="Math.sign() JavaScript method">here</a>.
 

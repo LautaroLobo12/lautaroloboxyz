@@ -8,25 +8,25 @@ author: Lautaro Lobo
 
 First of all, we have a functional solution, not the best solution (it may take some time to run with large numbers), but a solution at least:
 
-~~~javascript
+```javascript
 function factorial(n)
 \{
-    if (n==0 || n==1)\{ 
-      return 1; 
+    if (n==0 || n==1)\{
+      return 1;
     }
-    else \{ 
-      return n * factorial( n-1 ); 
+    else \{
+      return n * factorial( n-1 );
     }
 }
 
 console.log(factorial(5))
-~~~
+```
 
 The good thing is that is pretty easy to read.
 
 Now, a better solution would be something like this:
 
-~~~javascript
+```javascript
 function factorial(n)\{
   let j = 1;
   for (let i = 1; i <= n; i++)\{
@@ -36,13 +36,13 @@ function factorial(n)\{
 }
 
 console.log(factorial(5))
-~~~
+```
 
 An imperative solution using a for loop. This makes our function run faster.
 
 Now let's see the average function. First of all, a solution using a for loop:
 
-~~~javascript
+```javascript
 function average(array) \{
   let count = array.length;
   if (count == 0)\{
@@ -57,11 +57,11 @@ function average(array) \{
 }
 
 console.log(average([2,4]))
-~~~
+```
 
 I also made it using the `reduce()` method and an arrow function. Something weird came out:
 
-~~~javascript
+```javascript
 function average(array) \{
   let count = array.length;
   if (count == 0)\{
@@ -69,11 +69,11 @@ function average(array) \{
   } else \{
      return array.reduce( (a,b) => a + b) / count;
   }
-   
+
 }
 
 console.log(average([2,5,2]));
-~~~
+```
 
 That's not very readable, so I prefer the first solution, which btw runs faster.
 

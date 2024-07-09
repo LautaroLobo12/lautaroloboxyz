@@ -18,29 +18,29 @@ Let's see how we can make this happen!
 
 ## On Hostinger
 
-* Go to your cPanel > Advanced > Git.
+- Go to your cPanel > Advanced > Git.
 
-* Add your repository address, where you have all your site's files (Images, Stylesheets, everything must be in this repo). Copy and paste the address that shows up when your click on the "Clone or download" button founded at your GitHub repository. Leave everything else as it is, unless you [know](https://help.github.com/en/articles/about-branches) what you're doing.
+- Add your repository address, where you have all your site's files (Images, Stylesheets, everything must be in this repo). Copy and paste the address that shows up when your click on the "Clone or download" button founded at your GitHub repository. Leave everything else as it is, unless you [know](https://help.github.com/en/articles/about-branches) what you're doing.
 
-* You may have read somewhere that your public_html folder must be empty. Absolutelly right, on your left bar, go to Files > File Manager.
+- You may have read somewhere that your public_html folder must be empty. Absolutelly right, on your left bar, go to Files > File Manager.
 
-* There, click the green button.
+- There, click the green button.
 
-* Now delete all what is there (be sure to have a backup, just in case). 
+- Now delete all what is there (be sure to have a backup, just in case).
 
-* Now go back to Git on cPanel, and click the Manage button at the side of the repo you just added, and then click on Auto Deployment.
+- Now go back to Git on cPanel, and click the Manage button at the side of the repo you just added, and then click on Auto Deployment.
 
-* A Webhook is an HTTP callback (HTTP POST), that occurs when an specific event happens. In this case, when a commit takes place on your repo. There's also [that GitHub guide](https://developer.github.com/webhooks/creating/) about setting up Webhooks, but I found my explanation more straight to the point. After you copied the Webhook URL let's go to the second easy-peazy part.
+- A Webhook is an HTTP callback (HTTP POST), that occurs when an specific event happens. In this case, when a commit takes place on your repo. There's also [that GitHub guide](https://developer.github.com/webhooks/creating/) about setting up Webhooks, but I found my explanation more straight to the point. After you copied the Webhook URL let's go to the second easy-peazy part.
 
 ## On GitHub
 
-* Get into your site's GitHub repository, and go to Settings > Webhooks > Add webhook.
+- Get into your site's GitHub repository, and go to Settings > Webhooks > Add webhook.
 
-* There, paste the URL that you copied from Hostinger into the _Payload URL_ field. At _Content type_ select the _application/json_ option, and everything else as it is. Change things on your own risk! (actually nothing bad can happen, just, it may be won't work as expected). After that, click the green button.
+- There, paste the URL that you copied from Hostinger into the _Payload URL_ field. At _Content type_ select the _application/json_ option, and everything else as it is. Change things on your own risk! (actually nothing bad can happen, just, it may be won't work as expected). After that, click the green button.
 
 ## That's it!
 
-Now you have Continuous Deployment [on Hostinger](https://www.hostg.xyz/aff_c?offer_id=6&aff_id=19988), through Git. 
+Now you have Continuous Deployment [on Hostinger](https://www.hostg.xyz/aff_c?offer_id=6&aff_id=19988), through Git.
 
 Use the comments to say thanks if this was worth your time, and share to someone who may be interested. On the unlikely case where things didn't work to you, tell me in the comments below and I'll give you a hand, see you next time!
 

@@ -135,7 +135,7 @@ Inside our function, we begin the drawing with the beginPath() method, and then 
     <script>
       var myCanvas = document.getElementById("my_canvas");
       var ctx = myCanvas.getContext("2d");
-      function draw(startX, startY, len, angle) \{
+      function draw(startX, startY, len, angle) {
           ctx.beginPath();
           ctx.save();
       }
@@ -159,7 +159,7 @@ Now we'll draw our Fractal Tree, by drawing a line (branch), rotating the canvas
     <script>
       var myCanvas = document.getElementById("my_canvas");
       var ctx = myCanvas.getContext("2d");
-      function draw(startX, startY, len, angle) \{
+      function draw(startX, startY, len, angle) {
           ctx.beginPath();
           ctx.save();
 
@@ -169,7 +169,7 @@ Now we'll draw our Fractal Tree, by drawing a line (branch), rotating the canvas
           ctx.lineTo(0, -len);
           ctx.stroke();
 
-          if(len < 10) \{
+          if(len < 10) {
               ctx.restore();
               return;
           }
@@ -212,7 +212,7 @@ We'll add a new parameter to our draw function, branchWidth, to make our Fractal
     <script>
       var myCanvas = document.getElementById("my_canvas");
       var ctx = myCanvas.getContext("2d");
-      function draw(startX, startY, len, angle, branchWidth) \{
+      function draw(startX, startY, len, angle, branchWidth) {
           ctx.lineWidth = branchWidth;
 
           ctx.beginPath();
@@ -224,7 +224,7 @@ We'll add a new parameter to our draw function, branchWidth, to make our Fractal
           ctx.lineTo(0, -len);
           ctx.stroke();
 
-          if(len < 10) \{
+          if(len < 10) {
               ctx.restore();
               return;
           }
@@ -255,7 +255,7 @@ Now, let's add some color! And shadows, why not.
     <script>
       var myCanvas = document.getElementById("my_canvas");
       var ctx = myCanvas.getContext("2d");
-      function draw(startX, startY, len, angle, branchWidth) \{
+      function draw(startX, startY, len, angle, branchWidth) {
           ctx.lineWidth = branchWidth;
 
           ctx.beginPath();
@@ -273,7 +273,7 @@ Now, let's add some color! And shadows, why not.
           ctx.shadowBlur = 15;
           ctx.shadowColor = "rgba(0,0,0,0.8)";
 
-          if(len < 10) \{
+          if(len < 10) {
               ctx.restore();
               return;
           }

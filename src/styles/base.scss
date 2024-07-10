@@ -53,3 +53,23 @@ strong {
 code {
   @apply after:border-none;
 }
+
+.guest-post {
+  text-align: center;
+  background-color: #ffebeb;
+  padding: 4px 2px 6px 2px;
+  margin-bottom: 13px;
+  border-radius: 4px;
+  text-decoration: underline;
+}
+
+#index {
+  background-color: #f5f8fa;
+  padding: 6px 5px 0.5px 5px;
+  margin-bottom: 13px;
+  border-radius: 4px;
+}
+
+#index h4 {
+  margin-left: 3%;
+}

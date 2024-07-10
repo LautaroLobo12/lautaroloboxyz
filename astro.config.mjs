@@ -48,8 +48,8 @@ export default defineConfig({
       ],
     ],
     shikiConfig: {
-      theme: "one-dark-pro",
-      wrap: true,
+      theme: "synthwave-84",
+      wrap: false,
     },
     extendDefaultPlugins: true,
   },

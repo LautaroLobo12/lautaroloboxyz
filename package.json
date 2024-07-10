@@ -9,7 +9,7 @@
     "dev": "yarn generate-json && astro dev",
     "build": "astro check && yarn generate-json && astro build",
     "preview": "astro preview",
-    "format": "prettier -w ./src",
+    "format": "prettier write ./src",
     "generate-json": "node scripts/jsonGenerator.js",
     "remove-darkmode": "node scripts/removeDarkmode.js && yarn format"
   },

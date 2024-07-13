@@ -20,11 +20,6 @@ export const getTaxonomy = async (collection: any, name: string) => {
 export const getAllTaxonomy = async (collection: any, name: string) => {
   const singlePages = await getSinglePage(collection);
   const taxonomyPages = singlePages.map((page: any) => page.data[name]);
-  let taxonomies: string[] = [];
-  for (let i = 0; i < taxonomyPages.length; i++) {
-    const categoryArray = taxonomyPages[i];
-    taxonomies.push(categoryArray[i]);
-  }
-  return taxonomies;
+  return taxonomyPages;
 };
 ---

@@ -8,6 +8,7 @@ const BLOG_FOLDER = "blog";
 
 const tags = await getTaxonomy(BLOG_FOLDER, "tags");
 const allTags = await getAllTaxonomy(BLOG_FOLDER, "tags");
+const flattenedTags = allTags.flat();
 ---
 
 <Base title={"Tags"}>
@@ -17,7 +18,7 @@ const allTags = await getAllTaxonomy(BLOG_FOLDER, "tags");
       <ul>
         {
           tags.map((tag: any) => {
-            const count = allTags.filter((c) => c === tag).length;
+            const count = flattenedTags.filter(c => c === tag).length;
             return (
               <li class="m-3 inline-block">
                 <a

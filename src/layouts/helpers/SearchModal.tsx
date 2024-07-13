@@ -159,7 +159,7 @@ const SearchModal = () => {
           </label>
           <input
             id="searchInput"
-            placeholder="Search..."
+            placeholder="Search through my content..."
             className="search-wrapper-header-input"
             type="input"
             name="search"

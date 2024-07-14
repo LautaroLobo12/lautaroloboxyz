@@ -30,13 +30,10 @@ const currentPosts = sortedPosts.slice(0, config.settings.pagination);
     <div class="container">
       <div class="row gx-5">
         <!-- blog posts -->
-        <div class="lg:col-8">
-          <div class="row">
+          <div class="row text-center">
             {
               currentPosts.map((post) => (
-                <div class="mb-14 md:col-6">
                   <BlogCard data={post} />
-                </div>
               ))
             }
           </div>
@@ -45,7 +42,6 @@ const currentPosts = sortedPosts.slice(0, config.settings.pagination);
             currentPage={1}
             totalPages={totalPages}
           />
-        </div>
       </div>
     </div>
   </section>

@@ -7,7 +7,6 @@ import { getSinglePage } from "@/lib/contentParser.astro";
 import { getTaxonomy } from "@/lib/taxonomyParser.astro";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import PageHeader from "@/partials/PageHeader.astro";
-import PostSidebar from "@/partials/PostSidebar.astro";
 import { getEntry } from "astro:content";
 
 const BLOG_FOLDER = "blog";
@@ -67,9 +66,6 @@ export async function getStaticPaths() {
             totalPages={totalPages}
           />
         </div>
-
-        <!-- sidebar -->
-        <PostSidebar tags={tags} />
       </div>
     </div>
   </section>

@@ -1,37 +1,4 @@
 {
-  "main": [
-    {
-      "name": "Home",
-      "url": "/"
-    },
-    {
-      "name": "About",
-      "url": "/about"
-    },
-    {
-      "name": "Pages",
-      "url": "",
-      "hasChildren": true,
-      "children": [
-        {
-          "name": "Blog",
-          "url": "/blog"
-        },
-        {
-          "name": "Authors",
-          "url": "/authors"
-        },
-        {
-          "name": "Tags",
-          "url": "/tags"
-        },
-        {
-          "name": "404 Page",
-          "url": "/404"
-        }
-      ]
-    }
-  ],
   "footer": [
     {
       "name": "Privacy Policy",

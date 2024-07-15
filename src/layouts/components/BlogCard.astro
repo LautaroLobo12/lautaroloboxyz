@@ -15,7 +15,7 @@ const { title, image, date, author } = data.data;
 <a
     href={`/${blog_folder}/${data.slug}`}
   >
-  <div class="bg-body dark:bg-darkmode-body" id="blog-card">
+  <div class="bg-body dark:bg-darkmode-body blog-card">
     {
       image && (
           <ImageMod
@@ -29,7 +29,7 @@ const { title, image, date, author } = data.data;
           />
       )
     }
-    <h4 class="mb-3" style="width: 460px">
+    <h4 class="mb-3 blog-card-title">
       <a href={`/${blog_folder}/${data.slug}`}>
         {title}
       </a>
@@ -44,5 +44,5 @@ const { title, image, date, author } = data.data;
   </div>
 </a>
 <center>
-  <hr class="mt-5 mb-10" id="blog-card-hr">
+  <hr class="mt-5 mb-10 blog-card-hr">
 </center>

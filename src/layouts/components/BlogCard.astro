@@ -1,51 +1,48 @@
 ---
 import config from "@/config/config.json";
 import dateFormat from "@/lib/utils/dateFormat";
-import { humanize, plainify, slugify } from "@/lib/utils/textConverter";
+import { humanize } from "@/lib/utils/textConverter";
 import { FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./ImageMod.astro";
 
 const {
-  summary_length,
   blog_folder,
-}: { summary_length: number; blog_folder: string } = config.settings;
+}: { blog_folder: string } = config.settings;
 const { data } = Astro.props;
 const { title, image, date, author } = data.data;
 ---
 
-<div class="bg-body dark:bg-darkmode-body">
-  {
-    image && (
-      <ImageMod
-        class="mb-6 object-cover rounded"
-        src={image}
-        alt={title}
-        width={400}
-        height={230}
-        format="webp"
-        style="aspect-ratio: 17/8"
-      />
-    )
-  }
-  <h4 class="mb-3">
-    <a href={`/${blog_folder}/${data.slug}`}>
-      {title}
-    </a>
-  </h4>
-  <ul class="mb-4">
-    <li class="mr-4 inline-block">
-      <a href={`/authors/${slugify(author)}`}>
-        <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
-        {humanize(author)}
-      </a>
-    </li>
-    {date && <li class="inline-block">{dateFormat(date)}</li>}
-  </ul>
-  <p class="mb-6">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
-  <a
-    class="btn btn-outline-primary btn-sm"
+<a
     href={`/${blog_folder}/${data.slug}`}
   >
-    read more
-  </a>
-</div>
+  <div class="bg-body dark:bg-darkmode-body" id="blog-card">
+    {
+      image && (
+          <ImageMod
+            class="mb-6 object-cover rounded"
+            src={image}
+            alt={title}
+            width={460}
+            height={230}
+            format="webp"
+            style="aspect-ratio: 16/7"
+          />
+      )
+    }
+    <h4 class="mb-3">
+      <a href={`/${blog_folder}/${data.slug}`}>
+        {title}
+      </a>
+    </h4>
+    <ul class="mb-4">
+      <li class="mr-4 inline-block">
+          <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
+          {humanize(author)}
+      </li>
+      {date && <li class="inline-block">{dateFormat(date)}</li>}
+    </ul>
+  </div>
+</a>
+<center>
+  <hr class="mt-5 mb-10" id="blog-card-hr">
+</center>

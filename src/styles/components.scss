@@ -183,3 +183,21 @@ blockquote {
 .content a {
   color: #59a6ed !important;
 }
+
+#blog-card {
+  margin: 0 0 2% 30%
+}
+
+#blog-card-hr {
+  margin: 0 10% 4% 10%
+}
+
+@media only screen and (max-width: 1200px) {
+  #blog-card {
+    margin-left: 4%;
+  }
+
+  #blog-card-hr {
+    margin-bottom: 5%;
+  }
+}

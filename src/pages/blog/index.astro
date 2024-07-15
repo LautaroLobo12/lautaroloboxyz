@@ -26,9 +26,9 @@ const currentPosts = sortedPosts.slice(0, config.settings.pagination);
   <PageHeader title={postIndex.data.title} />
   <section class="section">
     <div class="container">
-      <div class="row gx-5">
+      <div class="row">
         <!-- blog posts -->
-          <div class="row text-center">
+          <div class="row">
             {
               currentPosts.map((post) => (
                   <BlogCard data={post} />

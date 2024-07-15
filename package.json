@@ -1,8 +1,8 @@
 {
   "name": "lautaroloboxyz",
-  "version": "3.3.4",
-  "description": "Astro and Tailwindcss boilerplate",
-  "author": "zeon.studio",
+  "version": "1.0",
+  "description": "My personal website built with Astro",
+  "author": "Lautaro Lobo",
   "license": "MIT",
   "packageManager": "yarn@1.22.19",
   "scripts": {

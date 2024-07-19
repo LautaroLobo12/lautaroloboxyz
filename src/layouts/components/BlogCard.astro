@@ -12,10 +12,12 @@ const { data } = Astro.props;
 const { title, image, date, author } = data.data;
 ---
 
-<a
+
+  <div class="bg-body dark:bg-darkmode-body blog-card">
+    <a
     href={`/${blog_folder}/${data.slug}`}
   >
-  <div class="bg-body dark:bg-darkmode-body blog-card">
+  <div>
     {
       image && (
           <ImageMod
@@ -30,10 +32,11 @@ const { title, image, date, author } = data.data;
       )
     }
     <h4 class="mb-3 blog-card-title">
-      <a href={`/${blog_folder}/${data.slug}`}>
-        {title}
-      </a>
+      {title}
     </h4>
+    </div>
+</a>
+
     <ul class="mb-4">
       <li class="mr-4 inline-block">
           <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
@@ -42,7 +45,6 @@ const { title, image, date, author } = data.data;
       {date && <li class="inline-block">{dateFormat(date)}</li>}
     </ul>
   </div>
-</a>
 <center>
-  <hr class="mt-5 mb-10 blog-card-hr">
+  <hr class="mb-10 blog-card-hr">
 </center>

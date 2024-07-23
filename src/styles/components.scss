@@ -40,6 +40,24 @@ blockquote {
   }
 }
 
+.social-icons-about {
+  display: flex;
+  justify-content: center;
+  margin-top: 4%;
+  margin-bottom: -50px;
+  margin: 4% 32.5% -50px 30%;
+  @apply space-x-4;
+  li {
+    @apply inline-block;
+    a {
+      @apply flex h-9 w-9 items-center justify-center rounded bg-primary text-center leading-9 text-white dark:bg-darkmode-primary dark:text-dark;
+      svg {
+        @apply h-5 w-5;
+      }
+    }
+  }
+}
+
 // notice
 .notice {
   @apply mb-6 rounded-lg border px-8 py-6;
@@ -184,6 +202,11 @@ blockquote {
   color: #59a6ed !important;
 }
 
+.about-section {
+  margin-right: 22.5%;
+  margin-left: 20%;
+}
+
 .blog-card {
   margin: 0 0 2% 30%;
   width: 500px;
@@ -212,5 +235,23 @@ blockquote {
 
   section container row {
     margin: 0px;
+  }
+}
+
+@media only screen and (max-width: 1280px) and (min-width: 920px){
+  .social-icons-about {
+    margin-top: 8%;
+  }
+}
+
+@media only screen and (max-width: 920px) and (min-width: 720px){
+  .social-icons-about {
+    margin-top: 10%;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .social-icons-about {
+    margin-top: 18%;
   }
 }

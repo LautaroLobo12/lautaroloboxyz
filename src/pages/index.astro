@@ -1,11 +1,14 @@
 ---
 import BlogCard from "@/components/BlogCard.astro";
 import Pagination from "@/components/Pagination.astro";
+import Social from "@/components/Social.astro";
 import config from "@/config/config.json";
+import social from "@/config/social.json";
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import { getEntry } from "astro:content";
+import About from "src/pages/about.astro";
 
 const BLOG_FOLDER = "blog";
 
@@ -17,11 +20,16 @@ const currentPosts = sortedPosts.slice(0, config.settings.pagination);
 ---
 
 <Base
-  title={postIndex.data.title}
-  meta_title={postIndex.data.meta_title}
+  title="Lautaro Lobo"
+  meta_title="Lautaro Lobo"
   image={postIndex.data.image}
-  description={postIndex.data.description}
+  description="My Personal Blog"
 >
+
+<About />
+
+<Social source={social.main} className="social-icons-about"/>
+
   <section class="section">
     <div class="container">
       <div class="row">

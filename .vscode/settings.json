@@ -2,6 +2,7 @@
   "files.associations": {
     "*.mdx": "mdx"
   },
+  "scss.lint.unknownAtRules": "ignore",
   "prettier.documentSelectors": ["**/*.astro"],
   "[astro]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

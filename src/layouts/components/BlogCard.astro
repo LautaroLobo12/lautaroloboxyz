@@ -13,67 +13,59 @@ const { title, image, date, author } = data.data;
 ---
 
 
-  <div class={ related ? "bg-body dark:bg-darkmode-body blog-card ml-0 blog-card-width" :
+<div class={ related ? "bg-body dark:bg-darkmode-body blog-card ml-0 blog-card-width" :
     "bg-body dark:bg-darkmode-body blog-card" } >
-    <a
+  <a
     href={`/${blog_folder}/${data.slug}`}
   >
-  <div>
+    <div>
 
-    <!-- image for home post list-->
-    {
-      (image && !related) && (
-          <ImageMod
-            class="mb-6 object-cover rounded"
-            src={image}
-            alt={title}
-            width={460}
-            height={230}
-            format="webp"
-            style="aspect-ratio: 16/7"
-          />
-      )
-    }
+      <!-- image for home post list-->
+      {
+        (image && !related) && (
+            <ImageMod
+              class="mb-6 object-cover rounded"
+              src={image}
+              alt={title}
+              width={460}
+              height={230}
+              format="webp"
+              style="aspect-ratio: 16/7"
+            />
+        )
+      }
 
-    <!-- image for related posts section -->
-    {
-      (image && related) && (
-          <ImageMod
-            class="mb-6 object-cover rounded"
-            src={image}
-            alt={title}
-            width={320}
-            height={230}
-            format="webp"
-            style="aspect-ratio: 16/7"
-          />
-      )
-    }
+      <!-- image for related posts section -->
+      {
+        (image && related) && (
+            <ImageMod
+              class="mb-6 object-cover rounded"
+              src={image}
+              alt={title}
+              width={320}
+              height={230}
+              format="webp"
+              style="aspect-ratio: 16/7"
+            />
+        )
+      }
 
-    <h4 class="mb-3 blog-card-title">
-      {title}
-    </h4>
+      <h4 class="mb-3 blog-card-title">
+        {title}
+      </h4>
     </div>
-</a>
+  </a>
 
   <ul class="pb-4">
     <li class="inline-block">
-        <FaRegUserCircle className={"-mt-1 inline-block"} />
-        {humanize(author)}
+      <FaRegUserCircle className={"-mt-1 inline-block"} />
+      {humanize(author)}
     </li>
     {date && <li class="inline-block">{dateFormat(date)}</li>}
   </ul>
 </div>
 
-{ !related &&
-  <div class="content-center">
-    <hr class="mb-10 blog-card-hr">
-  </div>
-}
-
-{ related &&
-  <div class="content-center hr-w">
-    <hr class="mb-10 blog-card-hr">
-  </div>
-}
+<div class={ !related ? "content-center" : "content-center hr-w" }>
+  <hr class="mb-10 blog-card-hr">
+</div>
   

@@ -51,7 +51,7 @@ export async function getStaticPaths() {
           <div class="row">
             {
               currentPosts.map((post) => (
-                  <BlogCard data={post} />
+                  <BlogCard data={post} related={false}/>
               ))
             }
           </div>

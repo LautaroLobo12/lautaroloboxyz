@@ -33,7 +33,7 @@ const filterByTags = taxonomyFilter(posts, "tags", tag!);
         {
           filterByTags.map((post) => (
             <div class="mb-14 md:col-6 lg:col-4">
-              <BlogCard data={post} />
+              <BlogCard data={post} related={false}/>
             </div>
           ))
         }

@@ -2,7 +2,7 @@
 title: "Hi! I'm Lautaro Lobo"
 meta_title: "About"
 description: "About me"
-image: "/images/avatar.png"
+image: "/images/avatar.webp"
 draft: false
 ---
 

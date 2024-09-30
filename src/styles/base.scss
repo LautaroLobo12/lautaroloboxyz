@@ -95,6 +95,10 @@ code {
   width: 360px;
 }
 
+div#disqus_thread iframe[sandbox] {
+  max-height: 0px !important;
+}
+
 @media only screen and (max-width: 768px) {
   .related-posts-blog-card-container-m-w {
     margin-left: 0%;

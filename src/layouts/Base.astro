@@ -175,11 +175,21 @@ const { title, meta_title, description, image, noindex, canonical } =
     <!-- Google tag (gtag.js) -->
     <script async is:inline type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-HWDKPREHWQ"></script>
     <script is:inline type="text/partytown">
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-HWDKPREHWQ');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HWDKPREHWQ');
     </script>
+
+    <!-- MailerLite Universal -->
+    <script is:inline type="text/partytown">
+      (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+      .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+      n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+      (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+      ml('account', '1126073');
+    </script>
+    <!-- End MailerLite Universal -->
   </head>
   <body>
     <TwSizeIndicator />

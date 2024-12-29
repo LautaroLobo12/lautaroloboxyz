@@ -1,0 +1,174 @@
+---
+title: "Why and How I Moved My Blog from Middleman SSG to Astro"
+date: 2024-12-29T15:20:00-03
+tags: [GitHub, Astro]
+image: /images/middleman-to-astro.webp
+author: Lautaro Lobo
+---
+
+¡Long time no see!
+
+It's been years since I posted something here on my blog. And what better post to get back into it than a recap of why and how I have deployed a new version of this site, moving from Middleman to Astro (yey!).
+
+## Start With Why
+
+<center>
+  <img src="/images/confused-why.webp" alt="Confused Why Meme" style="width:250px"></img>
+</center>
+
+I originally developed my blog using [Middleman](https://middlemanapp.com/), a static site generator built with Ruby. It was the first [SSG](https://developer.mozilla.org/en-US/docs/Glossary/SSG) that crossed my path when I started on web development. I liked it; it's nice, but the project and community died with time… not meant to be mean, but the fact is that the latest major version release is from 2015 🫠.
+Handling dependencies with Ruby felt like a burden instead of a feature, and many packages, libraries and even themes were deprecated. All consequences of the same thing, a lack of an active community.
+
+I needed a more modern, efficient, and actively maintained solution, which led me to [Astro](https://astro.build/).
+
+## Outlining the Process
+First, I created a Trello board with only four columns with tiny, approachable tasks. Like User Stories, but with less detail. I also wrote some thoughts about the deployment strategy I wanted to have for this project. Since I have my code on GitHub, I wanted to at least try to use [GitHub Actions](https://github.com/features/actions).
+
+## The Whole Programming Thing
+The fun part. I started with the [Astro Docs](https://docs.astro.build/getting-started/) and began playing around with components, partials, custom styles, props, and mdx, until I ended up with this [Astro starter template](https://astro.build/themes/details/astroplate/), which I customized. The process felt fast since Astro has an engaged community and awesome documentation which makes it so easy to get a 101 site up and running in no time. 
+
+I first deleted all unnecessary pages, components, and libraries from the boilerplate which I knew I wouldn't use.
+
+After that, I started working on the header, moved all assets, and tuned up the blog page. The one you are currently reading!
+
+It was like creating my personal blog all over again, but with a sketch and a more outlined process to begin with.
+
+Finally, I had to set up [Disqus](https://disqus.com/) and an email marketing provider ([MailerLite](mailerlite.com)). I also had some issues with pagination and routing but after a few days of fidgeting with it, I got it working.
+
+## Setting Up GitHub Actions
+It was my first time working with GitHub Actions. Thankfully the [docs](https://docs.github.com/actions) were easy to follow. I played a little with the GA file until the CI / CD was set up. I followed the guidelines I wrote earlier, in which I stated the deployment strategy I wanted to follow for this project.
+
+I created two separate yml files in the .github > workflows directory.  The first one was an `npm run build` in the pull request. That's an extra check to feel more secure about what's getting merged to master.
+
+The yml file looks like: 
+
+```yml
+name: Build on PR Node 20
+
+on:
+  pull_request:
+    branches: ["master"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build on PR
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm ci
+      - run: npm run build --if-present
+```
+
+I could expand it and add something like a [sonar scan](https://github.com/marketplace/actions/official-sonarqube-scan), or a UTs run, but for this particular project that felt a little too overkill. Maybe I'll add a linter later.
+
+The second yml file I created runs a build and deploys to prod when a pull request gets merged to master.
+
+Well, it only runs an `npm run build` and pushes the dist folder to my prod branch (which is protected BTW). Then my Hostinger CD setup picks up the new commit from that branch and publishes a new version of the site.
+
+I love how fast I can get to prod, hassle-free.
+
+The yml file for this workflow is something like:
+
+```yml
+name: build and publish to production
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build and Push
+    steps:
+      - name: git-checkout
+        uses: actions/checkout@v4
+
+      - name: Install all dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+    
+      - name: Push
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: prod # The branch to push to
+          FOLDER: dist # The build subdir
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MESSAGE: "New Prod Build ${{ github.run_number }}" # The commit message
+```
+
+These are concepts that I learned for this particular project and I am very proud of the outcome.
+
+## Hostinger Set Up
+I have my domain and hosting services in Hostinger, so I had to set up the Continuous Deployment there. I have written a blog post about CD in Hostinger, it lies out the step-by-step process for setting up [Continuous Deployment on Hostinger](https://lautarolobo.xyz/blog/continuous-deployment-on-hostinger/) 😉
+
+## Conclusions
+It took me a while to get the time to write this post. I'm hoping to be more active this upcoming year in my blog, now that I have a simpler way of publishing new content, and the tech stack is a modern, easier-to-maintain code base. It was a good effort worth the pain, and the wait. And I also learned some new stuff! So that's great.
+
+Have you tried Astro yet? Read you in the comments! 👇
+
+<script type="application/ld+json">
+\{
+ "@context": "https://schema.org", 
+ "@type": "BlogPosting",
+ "url": "https://lautarolobo.xyz/blog/why-and-how-i-moved-my-blog-from-middleman-ssg-to-astro-js",
+ "mainEntityOfPage": "https://lautarolobo.xyz/why-and-how-i-moved-my-blog-from-middleman-ssg-to-astro-js",
+ "headline": "Why and How I Moved My Blog from Middleman SSG to Astro",
+ "alternativeHeadline": "The process of moving my blog from Middleman to Astro",
+ "genre": "Astro", 
+ "keywords": [
+  "Astro", 
+  "GitHub"
+  ], 
+ "wordcount": "735",
+ "datePublished": "2024-12-29",
+ "dateCreated": "2024-12-29",
+ "dateModified": "2024-12-29",
+ "description": "I'll show you how I created my blog with Astro, coming from Middleman, a SSG made with Ruby.",
+ "isFamilyFriendly": "true",
+ "image": "https://imgsafe.org/image/5709e8ceba",
+ "publisher": \{
+  "@type": "Organization",
+  "name": "Lautaro Jordan Lobo Ravarotto",
+  "url": "https://lautarolobo.xyz",
+  "logo": \{  
+   "@type": "ImageObject",
+   "author": "Lautaro Jordan Lobo Ravarotto",
+   "url": "https://imgsafe.org/image/5709e8ceba.png"
+   }
+  },
+ "author": \{
+  "@type": "Person",
+  "name": "Lautaro Jordan Lobo Ravarotto",
+  "url": "https://lautarolobo.xyz",
+  "email": "contact@lautarolobo.xyz",
+  "birthDate": "2000-04-12",
+  "gender": "male",
+  "nationality": "Argentina",
+   },
+ "creator": \{
+  "@type": "Person",
+  "name": "Lautaro Jordan Lobo Ravarotto",
+  "url": "https://lautarolobo.xyz",
+  "email": "contact@lautarolobo.xyz",
+  "birthDate": "2000-04-12",
+  "gender": "male",
+  "nationality": "Argentina", 
+   }
+  }
+ }
+},
+</script>

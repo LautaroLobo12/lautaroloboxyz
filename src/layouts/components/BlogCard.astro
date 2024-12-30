@@ -16,9 +16,9 @@ const { title, image, date, author } = data.data;
 <div class={ related ? "bg-body dark:bg-darkmode-body blog-card ml-0 blog-card-width" :
     "bg-body dark:bg-darkmode-body blog-card" } >
   <a
-    href={`/${blog_folder}/${data.slug}`}
+    href={`/${blog_folder}/${data.id}`}
   >
-    <div>
+    <div style="width:fit-content;block-size:fit-content;">
 
       <!-- image for home post list-->
       {
@@ -65,7 +65,7 @@ const { title, image, date, author } = data.data;
   </ul>
 </div>
 
-<div class={ !related ? "content-center" : "content-center hr-w" }>
-  <hr class="mb-10 blog-card-hr">
+<div class={ !related ? "content-center" : "content-center" }>
+  <hr class={ !related ? "mb-10 blog-card-hr" : "mb-10 blog-card-hr-related" }>
 </div>
   

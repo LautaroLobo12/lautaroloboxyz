@@ -22,7 +22,7 @@ const currentPosts = sortedPosts.slice(0, config.settings.pagination);
 <Base
   title="Lautaro Lobo"
   meta_title="Lautaro Lobo"
-  image={postIndex.data.image}
+  image={postIndex?.data.image}
   description="My Personal Blog"
 >
 
@@ -32,7 +32,7 @@ const currentPosts = sortedPosts.slice(0, config.settings.pagination);
 
   <section class="section">
     <div class="container">
-      <div class="row">
+      <div class="row" style="width: 80%">
         <!-- blog posts -->
           <div class="row">{
               currentPosts.map((post) => (
@@ -40,11 +40,11 @@ const currentPosts = sortedPosts.slice(0, config.settings.pagination);
               ))
             }
           </div>
-          <Pagination
+      </div>
+      <Pagination
             currentPage={1}
             totalPages={totalPages}
           />
-      </div>
     </div>
   </section>
 </Base>

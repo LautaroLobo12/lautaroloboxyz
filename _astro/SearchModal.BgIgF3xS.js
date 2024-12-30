@@ -2454,11 +2454,18 @@ See ya!
 `},{group:"blog",slug:"blog/recursive-function-haskell",frontmatter:{title:"A Recursive Function in Haskell",date:"2019-05-17T20:05:00.000Z",tags:["Haskell","Recursion"],author:"Lautaro Lobo"},content:`
 import Latex from "src/content/latex.astro";
 
-<img src="/images/wowed-sculpture.webp" alt="WOW" title="WOWed Sculpture"></img>Ready
-to get your head cracked? Ok, let's define a simple function that multiplies each
-number of a list of numbers by 2. We will give this function the name of "by2".
+<div style="display: flex; align-items: flex-start; margin-bottom: -10px;">
+  <img src="/images/wowed-sculpture.webp" alt="WOW" title="WOWed Sculpture" style="margin-right: 10px"></img>
 
-So, you have a function that takes a list of numbers as a parameter, and after the computation process shows a list of numbers. How do you write this in Haskell? Well:
+  <div style="display: flex; flex-direction: column; align-items: flex-start; margin-top: 5px;">
+  Ready to get your head cracked? Ok, let's define a simple function that multiplies each
+  number of a list of numbers by 2. We will give this function the name of "by2".
+
+  So, you have a function that takes a list of numbers as a parameter, and after the computation process shows a list of numbers. How do you write this in Haskell? Well:
+
+  </div>
+</div>
+
 
 \`\`\`haskell
 by2 :: [Int] -> [Int]

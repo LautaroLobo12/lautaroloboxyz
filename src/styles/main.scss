@@ -1,18 +1,16 @@
+@use "base";
+@use "components";
+@use "navigation";
+@use "buttons";
+@use "search";
+@use "utilities";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  @import "base";
-}
+@layer base {}
 
-@layer components {
-  @import "components";
-  @import "navigation";
-  @import "buttons";
-  @import "search";
-}
+@layer components {}
 
-@layer utilities {
-  @import "utilities";
-}
+@layer utilities {}

@@ -1,10 +1,8 @@
 ---
 import ImageMod from "@/components/ImageMod.astro";
-import { getEntry } from "astro:content";
+import * as about from "src/content/about/-index.md";
 
-const about = await getEntry("about", "-index");
-const { Content } = await about.render();
-const { title, image } = about.data;
+const { title, image } = about.frontmatter;
 ---
 
   <section class="section-sm about-section">
@@ -22,7 +20,7 @@ const { title, image } = about.data;
             )
           }
           <div class="content -mb-36 2xl:mx-64 -mt-6">
-            <Content />
+            <Fragment set:html={about.compiledContent()}/>
           </div>
     </div>
   </section>

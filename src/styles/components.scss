@@ -208,11 +208,15 @@ blockquote {
 }
 
 .blog-card {
-  margin: 0 0 2% 30%;
+  margin: 0 0 2% 42%;
   width: 500px;
 }
 
 .blog-card-hr {
+  margin: 0 10% 4% 45%;
+}
+
+.blog-card-hr-related {
   margin: 0 10% 4% 10%;
 }
 
@@ -220,10 +224,17 @@ blockquote {
   width: 460px;
 }
 
+@media only screen and (min-width: 1024px) {
+  .blog-card-hr {
+    margin-left: 35%;
+  }
+}
+
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
 
   .blog-card-hr {
     margin-bottom: 5%;
+    margin-left: 30%;
   }
 
   .blog-card {
@@ -239,6 +250,10 @@ blockquote {
 
   .blog-card-title {
     width: 360px;
+  }
+
+  .blog-card-hr {
+    margin-left: 10%;
   }
 }
 

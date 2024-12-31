@@ -10,11 +10,13 @@ const {
 }: { blog_folder: string } = config.settings;
 const { data, related } = Astro.props;
 const { title, image, date, author } = data.data;
+
+let containerClass = "bg-body dark:bg-darkmode-body mx-auto";
+related ? containerClass += "ml-0" : null;
 ---
 
 
-<div class={ related ? "bg-body dark:bg-darkmode-body blog-card ml-0 blog-card-width" :
-    "bg-body dark:bg-darkmode-body blog-card" } >
+<div class={ containerClass } style="width:fit-content;block-size:fit-content;">
   <a
     href={`/${blog_folder}/${data.id}`}
   >
@@ -50,7 +52,7 @@ const { title, image, date, author } = data.data;
         )
       }
 
-      <h4 class="mb-3 blog-card-title">
+      <h4 class="mb-3">
         {title}
       </h4>
     </div>
@@ -63,9 +65,8 @@ const { title, image, date, author } = data.data;
     </li>
     {date && <li class="inline-block">{dateFormat(date)}</li>}
   </ul>
+  <hr class="mb-8"/>
 </div>
 
-<div class={ !related ? "content-center" : "content-center" }>
-  <hr class={ !related ? "mb-10 blog-card-hr" : "mb-10 blog-card-hr-related" }>
-</div>
+<div></div>
   

@@ -1,0 +1,217 @@
+---
+title: The Manhattan Tourist Problem
+date: 2025-01-03T12:21:00-03
+tags: [Algorithms]
+image: /images/manhattan-tourist-problem-cover.webp
+author: Lautaro Lobo
+---
+
+Hi there! 
+
+I've been looking into some algorithmic problems lately. The Manhattan Tourist Problem is one of the most emblematic problems you could find online.
+
+Want to practice some Dynamic Programming? Let's dive straight into it!
+
+### Statement of the Problem
+
+You and your family are taking a tour through downtown Manhattan. The van will leave you at the northwesternmost corner of the city, and another van will be waiting to pick you up at the southeasternmost corner. But here's the thing: you can only move either to the south or to the east. You and your family are starting to develop a plan to visit as many attractions as possible, how would you do it?
+
+**Input:** A weighted grid G of size n*m.  
+**Output:** A longest path in G from (0,0) to (n,m).
+
+Here's an illustrated example:
+
+<center>
+  <div  style="background-color:white;width:fit-content;">
+    ![Manhattan Tourist Problem example](/images/manhattan-tourist-problem-example.webp)
+  </div>
+</center>
+
+The weight (we could also call it length) of a path from the source to the sink is the overall number of attractions in the path or the sum of the weights of its edges.
+
+An important thing to remember is that you can't go upward (to the north) or backward (to the west).
+
+A naive approach would be to calculate all the possible paths in the grid and select the longest path between them all. But this algorithm would be slow even with mid-sized grids, so it's not an option.
+
+<center>
+  ![A brute force algorithm was never an option](/images/manhattan-tourist-problem-meme.webp)
+</center>
+
+A different approach would be to use a greedy algorithm. But [greedy algorithms only consider locally optimal choices](https://brilliant.org/wiki/greedy-algorithm/) at each step, which could lead to missing out on a globally optimal path. So a greedy algorithm is out of the equation.
+
+So let's begin our analysis to come up with a [Dynamic Programming](https://www.geeksforgeeks.org/dynamic-programming/) solution.
+
+### Finding a Dynamic Programming Solution
+
+At first glance, we can see that to solve the general problem, we need to find the solution to many sub-problems. Precisely to n*m sub-problems: the longest path to (i,j) with 0 \<= i \<= n and 0 \<= j \<= m. 
+
+So instead of solving the Manhattan Tourist problem directly, we will solve the general problem, which is the longest path from the source vertex to an arbitrary sink vertex.
+
+First, let's define our set of vertex S, and S(i,j) as the vertex in the i-th row and j-th column. 
+
+Finding S(0,j) is trivial, you and your family can't go in another direction than to the east. The weight of the path S(0,j) is the sum of weights of the first j city blocks. The same happens with S(i,0) since you can only move south.
+
+Having this in mind we can compute S(1,1), you can arrive at S(1,1) from S(0,1) or S(1,0). The weight of each of these paths is:
+
+* S(0,1) + weight of the edge (block) between (0,1) and (1,1)  
+* S(1,0) + weight of the edge (block) between (1,0) and (1,1)
+
+The longest path is the larger of the above values. In the sample grid shown before, that value would be 4 (1+3). We've found the longest path from (0,0) to (1,1).
+
+The same logic applies to S(2,1), S(3,1), etc. We can use this logic to compute S(1,2), S(1,3), etc.
+
+In general, having the first row and the entire S(-,j) column allows you to compute S(-,j+1). Knowing that to arrive at S(i,j) we need to go through S(i-1,j) or through S(i,j-1) leads to the following conclusion: 
+
+<center>
+  ![S(i,j) = max(S(i-1,j) + weight of the edge between (i-1,j) and (i,j), S(i,j-1) + weight of the edge between (i,j-1) and (i,j))](/images/manhattan-tourist-problem-recurrence.webp)
+</center>
+This recurrence allows you to compute every cell of S in a single sweep of the grid. 
+
+The following algorithm written in pseudocode implements this procedure.
+
+```genie
+FUNCTION ManhattanTourist(n, m, down, right)  
+// n, m: dimensions of the grid (number of rows and columns)  
+// down[i][j]: weight of the edge going down from cell (i, j)  
+// right[i][j]: weight of the edge going right from cell (i, j)  
+// S[i][j]: maximum path sum to reach cell (i, j)
+
+// Base case: starting cell
+S[0][0] = 0
+
+// Initialize first column (moving only down)
+FOR i = 1 TO n
+  S[i][0] = S[i-1][0] + down[i][0]
+ENDFOR
+
+// Initialize first row (moving only right)
+FOR j = 1 TO m
+  S[0][j] = S[0][j-1] + right[0][j]
+ENDFOR
+
+// Fill the rest of the table using dynamic programming
+FOR i = 1 TO n
+  FOR j = 1 TO m
+    IF S[i-1][j] + down[i][j] < S[i][j-1] + right[i][j] THEN
+      S[i][j] = S[i][j-1] + right[i][j]
+    ELSE
+      S[i][j] = S[i-1][j] + down[i][j]
+    ENDIF  
+  ENDFOR  
+ENDFOR
+
+RETURN S[n][m]
+```
+
+You can implement this pseudocode in any programming language of your preference.
+
+<hr/> 
+
+I hope you have found the problem interesting, and it helped you get better at Dynamic Programming.
+
+In case you want to dive deeper, try answering the following questions:
+
+* How would you change the algorithm if the source vertex differs from (0,0)?   
+* What would happen if downtown Manhattan had diagonal streets (which actually has)? Should you change the algorithm or would still give the correct answer?
+
+See ya in my next blog posts!
+
+### Related Content
+
+[Manhattan Tourist Problem Lecture](https://www.youtube.com/watch?v=wmIMeyWDZI0) by [Pavel Pezner](https://en.wikipedia.org/wiki/Pavel_A._Pevzner)  
+[Lecture](https://csbio.unc.edu/mcmillan/Comp555S16/Lecture12.html#Manhattan-Tourist-Problem-(MTP)) from a BioAlgorithms course dictated by [Leonard McMillan](https://scholar.google.com/citations?user=z6cJOmMAAAAJ)
+
+> <p style="font-size: 13px;"> Cover image generated using [ImageFX](https://labs.google/fx/tools/image-fx) from [Google Labs](https://labs.google/) </p>
+
+<script type="application/ld+json">
+\{
+ "@context": "https://schema.org", 
+ "@type": "BlogPosting",
+ "url": "https://lautarolobo.xyz/blog/manhattan-tourist-problem",
+ "mainEntityOfPage": "https://lautarolobo.xyz/blog/manhattan-tourist-problem",
+ "headline": "The Manhattan Tourist Problem",
+ "alternativeHeadline": "Solving The Manhattan Tourist Problem with Dynamic Programming",
+ "genre": "Algorithms", 
+ "keywords": [
+  "algorithm", 
+  "algorithms", 
+  "programming",
+  "coding",
+  "computer science",
+  "graphs",
+  "graph theory",
+  "dynamic programming"
+  ],  
+ "wordcount": "723",
+ "datePublished": "2025-01-03",
+ "dateCreated": "2025-01-03",
+ "dateModified": "2025-01-03",
+ "description": "Lets practice Dynamic Programming by solving one of the most emblematic problems you could find online: The Manhattan Tourist Problem.",
+ "isFamilyFriendly": "true",
+ "image": "https://imgsafe.org/image/5709e8ceba",
+ "publisher": \{
+  "@type": "Organization",
+  "name": "Lautaro Jordan Lobo Ravarotto",
+  "url": "https://lautarolobo.xyz",
+  "logo": \{  
+   "@type": "ImageObject",
+   "author": "Lautaro Jordan Lobo Ravarotto",
+   "url": "https://lautarolobo.xyz/images/100px-3211424c.jpg"
+   }
+  },
+ "author": \{
+  "@type": "Person",
+  "name": "Lautaro Jordan Lobo Ravarotto",
+  "url": "https://lautarolobo.xyz",
+  "email": "contact@lautarolobo.xyz",
+  "birthDate": "2000-04-12",
+  "gender": "male",
+  "nationality": "Argentina",
+  "alumniOf": \{
+   "@type": "CollegeOrUniversity",
+   "legalName": "National University of Córdoba",
+   "sameAs": "https://en.wikipedia.org/wiki/National_University_of_C%C3%B3rdoba",
+   "location": \{
+    "@type": "Place",
+    "sameAs": "http://unc.edu.ar",
+    "name": "National University of Córdoba",
+    "address": \{
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Haya de la Torre s/n",
+      "addressCountry": "Argentina",
+      "addressLocality": "Córdoba",
+      "postalCode": "5000" 
+      }
+     }
+    }
+   },
+ "creator": \{
+  "@type": "Person",
+  "name": "Lautaro Jordan Lobo Ravarotto",
+  "url": "https://lautarolobo.xyz",
+  "email": "contact@lautarolobo.xyz",
+  "birthDate": "2000-04-12",
+  "gender": "male",
+  "nationality": "Argentina",
+  "alumniOf": \{
+   "@type": "CollegeOrUniversity",
+   "legalName": "National University of Córdoba",
+   "sameAs": "https://en.wikipedia.org/wiki/National_University_of_C%C3%B3rdoba",
+   "location": \{
+    "@type": "Place",
+    "sameAs": "http://unc.edu.ar",
+    "name": "National University of Córdoba",
+    "address": \{
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Haya de la Torre s/n",
+      "addressCountry": "Argentina",
+      "addressLocality": "Córdoba",
+      "postalCode": "5000" 
+      }
+     }
+    }   
+   }
+  }
+ }
+},
+</script>

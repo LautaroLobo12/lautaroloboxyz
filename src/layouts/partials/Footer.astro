@@ -6,7 +6,7 @@ import menu from "@/config/menu.json";
 import social from "@/config/social.json";
 import { markdownify } from "@/lib/utils/textConverter";
 
-const { footer }: { footer: { name: string; url: string }[] } = menu;
+const { footer }: { footer: { name: string; url: string; rel: string }[] } = menu;
 ---
 
 <footer class="bg-theme-light dark:bg-darkmode-theme-light">
@@ -20,7 +20,7 @@ const { footer }: { footer: { name: string; url: string }[] } = menu;
           {
             footer.map((menu) => (
               <li class="m-3 inline-block">
-                <a href={menu.url}>{menu.name}</a>
+                <a href={menu.url} rel={menu.rel}>{menu.name}</a>
               </li>
             ))
           }

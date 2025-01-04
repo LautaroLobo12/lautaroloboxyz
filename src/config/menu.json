@@ -2,7 +2,8 @@
   "footer": [
     {
       "name": "Privacy Policy",
-      "url": "/privacy-policy"
+      "url": "/privacy-policy",
+      "rel": "privacy-policy"
     }
   ]
 }

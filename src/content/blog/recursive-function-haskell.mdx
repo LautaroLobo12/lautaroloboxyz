@@ -1,11 +1,12 @@
 ---
 title: A Recursive Function in Haskell
-date: 2019-05-17T17:05:00-03
+date: 2019-05-17T17:05:00-03:00
 tags: [Haskell, Recursion]
 author: Lautaro Lobo
 ---
 
 import Latex from "src/content/latex.astro";
+import Schema from "src/content/schema.astro";
 
 <div style="display: flex; align-items: flex-start; margin-bottom: -10px;">
   <img src="/images/wowed-sculpture.webp" alt="WOW" title="WOWed Sculpture" style="margin-right: 10px"></img>
@@ -75,91 +76,14 @@ If anything went wrong, [tell me](mailto:contact@lautarolobo.xyz) and I'll be gl
 
 You've made it this far, kid. Impressive. Don't stop learning!
 
-<script type="application/ld+json">
-\{
- "@context": "https://schema.org", 
- "@type": "BlogPosting",
- "url": "https://lautarolobo.xyz/blog/recursive-function-haskell",
- "mainEntityOfPage": "https://lautarolobo.xyz/blog/recursive-function-haskell",
- "headline": "A Recursive Function in Haskell",
- "alternativeHeadline": "Recursion 101",
- "genre": "Haskell", 
- "keywords": [
-  "Programming", 
-  "Haskell", 
-  "Recursion", 
-  "Computer Science" 
-],
- "wordcount": "583",
- "datePublished": "2019-05-17",
- "dateCreated": "2019-05-17",
- "dateModified": "2024-12-30",
- "description": "This is the next level in Haskell programming, we are going to define a simple function applying recursion!",
- "isFamilyFriendly": "true",
- "image": "https://imgsafe.org/image/5709e8ceba",
- "publisher": \{
-  "@type": "Organization",
-  "name": "Lautaro Jordan Lobo Ravarotto",
-  "url": "https://lautarolobo.xyz",
-  "logo": \{  
-   "@type": "ImageObject",
-   "author": "Lautaro Jordan Lobo Ravarotto",
-   "url": "https://imgsafe.org/image/5709e8ceba.png"
-   }
-  },
- "author": \{
-  "@type": "Person",
-  "name": "Lautaro Jordan Lobo Ravarotto",
-  "url": "https://lautarolobo.xyz",
-  "email": "contact@lautarolobo.xyz",
-  "birthDate": "2000-04-12",
-  "gender": "male",
-  "nationality": "Argentina",
-  "alumniOf": \{
-   "@type": "CollegeOrUniversity",
-   "legalName": "National University of Córdoba",
-   "sameAs": "https://en.wikipedia.org/wiki/National_University_of_C%C3%B3rdoba",
-   "location": \{
-    "@type": "Place",
-    "sameAs": "http://unc.edu.ar",
-    "name": "National University of Córdoba",
-    "address": \{
-      "@type": "PostalAddress",
-      "streetAddress": "Av. Haya de la Torre s/n",
-      "addressCountry": "Argentina",
-      "addressLocality": "Córdoba",
-      "postalCode": "5000" 
-      }
-     }
-    }
-   },
- "creator": \{
-  "@type": "Person",
-  "name": "Lautaro Jordan Lobo Ravarotto",
-  "url": "https://lautarolobo.xyz",
-  "email": "contact@lautarolobo.xyz",
-  "birthDate": "2000-04-12",
-  "gender": "male",
-  "nationality": "Argentina",
-  "alumniOf": \{
-   "@type": "CollegeOrUniversity",
-   "legalName": "National University of Córdoba",
-   "sameAs": "https://en.wikipedia.org/wiki/National_University_of_C%C3%B3rdoba",
-   "location": \{
-    "@type": "Place",
-    "sameAs": "http://unc.edu.ar",
-    "name": "National University of Córdoba",
-    "address": \{
-      "@type": "PostalAddress",
-      "streetAddress": "Av. Haya de la Torre s/n",
-      "addressCountry": "Argentina",
-      "addressLocality": "Córdoba",
-      "postalCode": "5000" 
-      }
-     }
-    }   
-   }
-  }
- }
-},
-</script>
+<Schema
+  title={frontmatter.title}
+  url="https://lautarolobo.xyz/blog/recursive-function-haskell"
+  description="This is the next level in Haskell programming, we are going to define a simple function applying recursion!"
+  alternativeTitle="Recursion 101"
+  genre="Haskell"
+  keywords="Programming,Haskell,Recursion,Computer Science"
+  wordcount="583"
+  date={frontmatter.date}
+  dateModified="2024-12-30T00:00:00-03:00"
+  />

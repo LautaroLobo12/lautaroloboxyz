@@ -1,10 +1,12 @@
 ---
 title: "Why and How I Moved My Blog from Middleman SSG to Astro"
-date: 2024-12-29T15:20:00-03
+date: 2024-12-29T15:20:00-03:00
 tags: [GitHub, Astro]
 image: /images/middleman-to-astro.webp
 author: Lautaro Lobo
 ---
+
+import Schema from "src/content/schema.astro";
 
 ¡Long time no see!
 
@@ -120,55 +122,14 @@ It took me a while to get the time to write this post. I'm hoping to be more act
 
 Have you tried Astro yet? Read you in the comments! 👇
 
-<script type="application/ld+json">
-\{
- "@context": "https://schema.org", 
- "@type": "BlogPosting",
- "url": "https://lautarolobo.xyz/blog/why-and-how-i-moved-my-blog-from-middleman-ssg-to-astro-js",
- "mainEntityOfPage": "https://lautarolobo.xyz/why-and-how-i-moved-my-blog-from-middleman-ssg-to-astro-js",
- "headline": "Why and How I Moved My Blog from Middleman SSG to Astro",
- "alternativeHeadline": "The process of moving my blog from Middleman to Astro",
- "genre": "Astro", 
- "keywords": [
-  "Astro", 
-  "GitHub"
-  ], 
- "wordcount": "735",
- "datePublished": "2024-12-29",
- "dateCreated": "2024-12-29",
- "dateModified": "2024-12-29",
- "description": "I'll show you how I created my blog with Astro, coming from Middleman, a SSG made with Ruby.",
- "isFamilyFriendly": "true",
- "image": "https://imgsafe.org/image/5709e8ceba",
- "publisher": \{
-  "@type": "Organization",
-  "name": "Lautaro Jordan Lobo Ravarotto",
-  "url": "https://lautarolobo.xyz",
-  "logo": \{  
-   "@type": "ImageObject",
-   "author": "Lautaro Jordan Lobo Ravarotto",
-   "url": "https://imgsafe.org/image/5709e8ceba.png"
-   }
-  },
- "author": \{
-  "@type": "Person",
-  "name": "Lautaro Jordan Lobo Ravarotto",
-  "url": "https://lautarolobo.xyz",
-  "email": "contact@lautarolobo.xyz",
-  "birthDate": "2000-04-12",
-  "gender": "male",
-  "nationality": "Argentina",
-   },
- "creator": \{
-  "@type": "Person",
-  "name": "Lautaro Jordan Lobo Ravarotto",
-  "url": "https://lautarolobo.xyz",
-  "email": "contact@lautarolobo.xyz",
-  "birthDate": "2000-04-12",
-  "gender": "male",
-  "nationality": "Argentina", 
-   }
-  }
- }
-},
-</script>
+<Schema 
+  title={frontmatter.title}
+  url="https://lautarolobo.xyz/blog/why-and-how-i-moved-my-blog-from-middleman-ssg-to-astro-js"
+  description="I'll show you how I created my blog with Astro, coming from Middleman, a SSG made with Ruby."
+  alternativeTitle="The process of moving my blog from Middleman to Astro"
+  genre="Astro"
+  keywords="Astro,GitHub"
+  wordcount="735"
+  date={frontmatter.date}
+  dateModified="2024-12-29T00:00:00-03:00"
+/>

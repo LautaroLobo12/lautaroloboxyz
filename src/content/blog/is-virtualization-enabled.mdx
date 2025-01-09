@@ -1,9 +1,11 @@
 ---
 title: Is Virtualization Technology Enabled On My PC?
-date: 2019-06-24T17:55:00-03
+date: 2019-06-24T17:55:00-03:00
 tags: [Linux]
 author: Lautaro Lobo
 ---
+
+import Schema from "src/content/schema.astro";
 
 Interested in virtual machines? And you need to know if your PC can run them? Well, you are in the right place!
 
@@ -61,93 +63,14 @@ KVM acceleration can NOT be used
 
 Well, that's it for now. Any thought write it down in the comments. See you next time!
 
-<script type="application/ld+json">
-\{
- "@context": "https://schema.org", 
- "@type": "BlogPosting",
- "url": "https://lautarolobo.xyz/blog/is-virtualization-enabled",
- "mainEntityOfPage": "https://lautarolobo.xyz/blog/is-virtualization-enabled",
- "headline": "Is Virtualization Enabled On My PC?",
- "alternativeHeadline": "VTX or AMD On My PC?",
- "genre": "main tag", 
- "keywords": [
-  "Linux", 
-  "VTX", 
-  "AMD", 
-  "AMD-v" ,
-  "Virtual Machine",
-  "Virtualization Technology"
-],  
- "wordcount": "246",
- "datePublished": "2019-06-24",
- "dateCreated": "2019-06-24",
- "dateModified": "2024-06-25",
- "description": "Let's find out if your PC can run a Virtual Machine!",
- "isFamilyFriendly": "true",
- "image": "https://imgsafe.org/image/5709e8ceba",
- "publisher": \{
-  "@type": "Organization",
-  "name": "Lautaro Jordan Lobo Ravarotto",
-  "url": "https://lautarolobo.xyz",
-  "logo": \{  
-   "@type": "ImageObject",
-   "author": "Lautaro Jordan Lobo Ravarotto",
-   "url": "https://imgsafe.org/image/5709e8ceba.png"
-   }
-  },
- "author": \{
-  "@type": "Person",
-  "name": "Lautaro Jordan Lobo Ravarotto",
-  "url": "https://lautarolobo.xyz",
-  "email": "contact@lautarolobo.xyz",
-  "birthDate": "2000-04-12",
-  "gender": "male",
-  "nationality": "Argentina",
-  "alumniOf": \{
-   "@type": "CollegeOrUniversity",
-   "legalName": "National University of Córdoba",
-   "sameAs": "https://en.wikipedia.org/wiki/National_University_of_C%C3%B3rdoba",
-   "location": \{
-    "@type": "Place",
-    "sameAs": "http://unc.edu.ar",
-    "name": "National University of Córdoba",
-    "address": \{
-      "@type": "PostalAddress",
-      "streetAddress": "Av. Haya de la Torre s/n",
-      "addressCountry": "Argentina",
-      "addressLocality": "Córdoba",
-      "postalCode": "5000" 
-      }
-     }
-    }
-   },
- "creator": \{
-  "@type": "Person",
-  "name": "Lautaro Jordan Lobo Ravarotto",
-  "url": "https://lautarolobo.xyz",
-  "email": "contact@lautarolobo.xyz",
-  "birthDate": "2000-04-12",
-  "gender": "male",
-  "nationality": "Argentina",
-  "alumniOf": \{
-   "@type": "CollegeOrUniversity",
-   "legalName": "National University of Córdoba",
-   "sameAs": "https://en.wikipedia.org/wiki/National_University_of_C%C3%B3rdoba",
-   "location": \{
-    "@type": "Place",
-    "sameAs": "http://unc.edu.ar",
-    "name": "National University of Córdoba",
-    "address": \{
-      "@type": "PostalAddress",
-      "streetAddress": "Av. Haya de la Torre s/n",
-      "addressCountry": "Argentina",
-      "addressLocality": "Córdoba",
-      "postalCode": "5000" 
-      }
-     }
-    }   
-   }
-  }
- }
-},
-</script>
+<Schema 
+  title={frontmatter.title}
+  url="https://lautarolobo.xyz/blog/is-virtualization-enabled"
+  description="Let's find out if your PC can run a Virtual Machine!"
+  alternativeTitle="VTX or AMD On My PC?"
+  genre="Linux"
+  keywords="Linux,VTX,AMD,AMD-v,Virtual Machine,Virtualization Technology"
+  wordcount="246"
+  date={frontmatter.date}
+  dateModified="2024-06-25T00:00:00-03:00" 
+/>

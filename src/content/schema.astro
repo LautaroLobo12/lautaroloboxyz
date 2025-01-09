@@ -1,0 +1,102 @@
+---
+const {
+    url,
+    title,
+    alternativeTitle,
+    genre,
+    keywords,
+    wordcount,
+    date,
+    dateModified,
+    description
+} = Astro.props;
+
+const listOfKeywords: string[] = keywords.split(",");
+
+const schema: string = JSON.stringify(
+{
+ "@context": "https://schema.org", 
+ "@type": "BlogPosting",
+ "url": url,
+ "mainEntityOfPage": url,
+ "headline": title,
+ "alternativeHeadline": alternativeTitle,
+ "genre": genre, 
+ "keywords": listOfKeywords,  
+ "wordcount": wordcount,
+ "datePublished": date,
+ "dateCreated": date,
+ "dateModified": dateModified,
+ "description": description,
+ "isFamilyFriendly": "true",
+ "image": "https://imgsafe.org/image/5709e8ceba",
+ "publisher": {
+  "@type": "Organization",
+  "name": "Lautaro Jordan Lobo Ravarotto",
+  "url": "https://lautarolobo.xyz",
+  "logo": {  
+   "@type": "ImageObject",
+   "author": {
+    "@type": "Person",
+    "name": "Lautaro Jordan Lobo Ravarotto",
+   },
+   "url": "https://lautarolobo.xyz/images/100px-3211424c.jpg"
+   }
+  },
+ "author": {
+  "@type": "Person",
+  "name": "Lautaro Jordan Lobo Ravarotto",
+  "url": "https://lautarolobo.xyz",
+  "email": "contact@lautarolobo.xyz",
+  "birthDate": "2000-04-12",
+  "gender": "male",
+  "nationality": "Argentina",
+  "alumniOf": {
+   "@type": "CollegeOrUniversity",
+   "legalName": "National University of Córdoba",
+   "sameAs": "https://en.wikipedia.org/wiki/National_University_of_C%C3%B3rdoba",
+   "location": {
+    "@type": "Place",
+    "sameAs": "http://unc.edu.ar",
+    "name": "National University of Córdoba",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Haya de la Torre s/n",
+      "addressCountry": "Argentina",
+      "addressLocality": "Córdoba",
+      "postalCode": "5000" 
+      }
+     }
+    }
+   },
+ "creator": {
+  "@type": "Person",
+  "name": "Lautaro Jordan Lobo Ravarotto",
+  "url": "https://lautarolobo.xyz",
+  "email": "contact@lautarolobo.xyz",
+  "birthDate": "2000-04-12",
+  "gender": "male",
+  "nationality": "Argentina",
+  "alumniOf": {
+   "@type": "CollegeOrUniversity",
+   "legalName": "National University of Córdoba",
+   "sameAs": "https://en.wikipedia.org/wiki/National_University_of_C%C3%B3rdoba",
+   "location": {
+    "@type": "Place",
+    "sameAs": "http://unc.edu.ar",
+    "name": "National University of Córdoba",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Haya de la Torre s/n",
+      "addressCountry": "Argentina",
+      "addressLocality": "Córdoba",
+      "postalCode": "5000" 
+      }
+     }
+    }
+   }
+  }
+);
+---
+
+<script type="application/ld+json" set:html={schema}></script>

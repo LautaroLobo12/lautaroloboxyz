@@ -1,10 +1,12 @@
 ---
 title: The Manhattan Tourist Problem
-date: 2025-01-06T10:35:00-03
+date: 2025-01-06T10:35:00-03:00
 tags: [Algorithms]
 image: /images/manhattan-tourist-problem-cover.webp
 author: Lautaro Lobo
 ---
+
+import Schema from "src/content/schema.astro";
 
 Hi there! 
 
@@ -123,95 +125,14 @@ See ya in my next blog posts!
 
 > <p style="font-size: 13px;"> Cover image generated using [ImageFX](https://labs.google/fx/tools/image-fx) from [Google Labs](https://labs.google/) </p>
 
-<script type="application/ld+json">
-\{
- "@context": "https://schema.org", 
- "@type": "BlogPosting",
- "url": "https://lautarolobo.xyz/blog/manhattan-tourist-problem",
- "mainEntityOfPage": "https://lautarolobo.xyz/blog/manhattan-tourist-problem",
- "headline": "The Manhattan Tourist Problem",
- "alternativeHeadline": "Solving The Manhattan Tourist Problem with Dynamic Programming",
- "genre": "Algorithms", 
- "keywords": [
-  "algorithm", 
-  "algorithms", 
-  "programming",
-  "coding",
-  "computer science",
-  "graphs",
-  "graph theory",
-  "dynamic programming"
-  ],  
- "wordcount": "723",
- "datePublished": "2025-01-06",
- "dateCreated": "2025-01-06",
- "dateModified": "2025-01-06",
- "description": "Lets practice Dynamic Programming by solving one of the most emblematic problems you could find online: The Manhattan Tourist Problem.",
- "isFamilyFriendly": "true",
- "image": "https://imgsafe.org/image/5709e8ceba",
- "publisher": \{
-  "@type": "Organization",
-  "name": "Lautaro Jordan Lobo Ravarotto",
-  "url": "https://lautarolobo.xyz",
-  "logo": \{  
-   "@type": "ImageObject",
-   "author": "Lautaro Jordan Lobo Ravarotto",
-   "url": "https://lautarolobo.xyz/images/100px-3211424c.jpg"
-   }
-  },
- "author": \{
-  "@type": "Person",
-  "name": "Lautaro Jordan Lobo Ravarotto",
-  "url": "https://lautarolobo.xyz",
-  "email": "contact@lautarolobo.xyz",
-  "birthDate": "2000-04-12",
-  "gender": "male",
-  "nationality": "Argentina",
-  "alumniOf": \{
-   "@type": "CollegeOrUniversity",
-   "legalName": "National University of Córdoba",
-   "sameAs": "https://en.wikipedia.org/wiki/National_University_of_C%C3%B3rdoba",
-   "location": \{
-    "@type": "Place",
-    "sameAs": "http://unc.edu.ar",
-    "name": "National University of Córdoba",
-    "address": \{
-      "@type": "PostalAddress",
-      "streetAddress": "Av. Haya de la Torre s/n",
-      "addressCountry": "Argentina",
-      "addressLocality": "Córdoba",
-      "postalCode": "5000" 
-      }
-     }
-    }
-   },
- "creator": \{
-  "@type": "Person",
-  "name": "Lautaro Jordan Lobo Ravarotto",
-  "url": "https://lautarolobo.xyz",
-  "email": "contact@lautarolobo.xyz",
-  "birthDate": "2000-04-12",
-  "gender": "male",
-  "nationality": "Argentina",
-  "alumniOf": \{
-   "@type": "CollegeOrUniversity",
-   "legalName": "National University of Córdoba",
-   "sameAs": "https://en.wikipedia.org/wiki/National_University_of_C%C3%B3rdoba",
-   "location": \{
-    "@type": "Place",
-    "sameAs": "http://unc.edu.ar",
-    "name": "National University of Córdoba",
-    "address": \{
-      "@type": "PostalAddress",
-      "streetAddress": "Av. Haya de la Torre s/n",
-      "addressCountry": "Argentina",
-      "addressLocality": "Córdoba",
-      "postalCode": "5000" 
-      }
-     }
-    }   
-   }
-  }
- }
-},
-</script>
+<Schema
+  title={frontmatter.title}
+  url="https://lautarolobo.xyz/blog/manhattan-tourist-problem"
+  description="Lets practice Dynamic Programming by solving one of the most emblematic problems you could find online: The Manhattan Tourist Problem."
+  alternativeTitle="Solving The Manhattan Tourist Problem with Dynamic Programming"
+  genre="Algorithms"
+  keywords="algorithm,algorithms,programming,coding,computer science,graphs,graph theory,dynamic programming"
+  wordcount="723"
+  date={frontmatter.date}
+  datemodified="2025-01-06T00:00:00-03:00"
+/>

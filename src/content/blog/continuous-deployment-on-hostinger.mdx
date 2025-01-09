@@ -1,10 +1,12 @@
 ---
 title: Continuous Deployment on Hostinger
-date: 2019-07-17T03:37:00-03
+date: 2019-07-17T03:37:00-03:00
 tags: [Git, GitHub, Hostinger]
 image: /images/git-plus-hostinger.webp
 author: Lautaro Lobo
 ---
+
+import Schema from "src/content/schema.astro";
 
 I couldn't find any good guide about this topic, so I wrote it my self!
 
@@ -44,92 +46,14 @@ Now you have Continuous Deployment [on Hostinger](https://www.hostg.xyz/aff_c?of
 
 Use the comments to say thanks if this was worth your time, and share to someone who may be interested. On the unlikely case where things didn't work to you, tell me in the comments below and I'll give you a hand, see you next time!
 
-<script type="application/ld+json">
-\{
- "@context": "https://schema.org", 
- "@type": "BlogPosting",
- "url": "https://lautarolobo.xyz/blog/continuous-deployment-on-hostinger",
- "mainEntityOfPage": "https://lautarolobo.xyz/blog/continuous-deployment-on-hostinger",
- "headline": "Continuous Deployment on Hostinger",
- "alternativeHeadline": "Connecting Git on Hostinger",
- "genre": "Web Development", 
- "keywords": [
-  "Hostinger", 
-  "Continuous Deployment", 
-  "Dev Ops", 
-  "Git" ,
-  "GitHub"
-],  
- "wordcount": "426",
- "datePublished": "2019-07-17",
- "dateCreated": "2019-07-17",
- "dateModified": "2024-06-25",
- "description": "Wondered how to set Continuous Deployment on Hostinger? Me too! That's why I wrote this post.",
- "isFamilyFriendly": "true",
- "image": "https://lautarolobo.xyz/images/git-plus-hostinger-9cfb1753.jpg",
- "publisher": \{
-  "@type": "Organization",
-  "name": "Lautaro Jordan Lobo Ravarotto",
-  "url": "https://lautarolobo.xyz",
-  "logo": \{  
-   "@type": "ImageObject",
-   "author": "Lautaro Jordan Lobo Ravarotto",
-   "url": "https://imgsafe.org/image/5709e8ceba.png"
-   }
-  },
- "author": \{
-  "@type": "Person",
-  "name": "Lautaro Jordan Lobo Ravarotto",
-  "url": "https://lautarolobo.xyz",
-  "email": "contact@lautarolobo.xyz",
-  "birthDate": "2000-04-12",
-  "gender": "male",
-  "nationality": "Argentina",
-  "alumniOf": \{
-   "@type": "CollegeOrUniversity",
-   "legalName": "National University of Córdoba",
-   "sameAs": "https://en.wikipedia.org/wiki/National_University_of_C%C3%B3rdoba",
-   "location": \{
-    "@type": "Place",
-    "sameAs": "http://unc.edu.ar",
-    "name": "National University of Córdoba",
-    "address": \{
-      "@type": "PostalAddress",
-      "streetAddress": "Av. Haya de la Torre s/n",
-      "addressCountry": "Argentina",
-      "addressLocality": "Córdoba",
-      "postalCode": "5000" 
-      }
-     }
-    }
-   },
- "creator": \{
-  "@type": "Person",
-  "name": "Lautaro Jordan Lobo Ravarotto",
-  "url": "https://lautarolobo.xyz",
-  "email": "contact@lautarolobo.xyz",
-  "birthDate": "2000-04-12",
-  "gender": "male",
-  "nationality": "Argentina",
-  "alumniOf": \{
-   "@type": "CollegeOrUniversity",
-   "legalName": "National University of Córdoba",
-   "sameAs": "https://en.wikipedia.org/wiki/National_University_of_C%C3%B3rdoba",
-   "location": \{
-    "@type": "Place",
-    "sameAs": "http://unc.edu.ar",
-    "name": "National University of Córdoba",
-    "address": \{
-      "@type": "PostalAddress",
-      "streetAddress": "Av. Haya de la Torre s/n",
-      "addressCountry": "Argentina",
-      "addressLocality": "Córdoba",
-      "postalCode": "5000" 
-      }
-     }
-    }   
-   }
-  }
- }
-},
-</script>
+<Schema 
+  title={frontmatter.title}
+  url="https://lautarolobo.xyz/blog/continuous-deployment-on-hostinger"
+  description="Wondered how to set Continuous Deployment on Hostinger? Me too! That's why I wrote this post."
+  alternativeTitle="Connecting Git on Hostinger"
+  genre="Web Development"
+  keywords="Hostinger,Continuous Deployment,Dev Ops,Git,GitHub"
+  wordcount="426"
+  date={frontmatter.date}
+  dateModified="2024-06-25T00:00:00-03:00"
+/>

@@ -1,10 +1,12 @@
 ---
 title: February of Fortran
-date: 2020-02-29T15:07:00-03
+date: 2020-02-29T15:07:00-03:00
 tags: [Fortran]
 image: /images/february-of-fortran.webp
 author: Lautaro Lobo
 ---
+
+import Schema from "src/content/schema.astro";
 
 ## What is Fortran?
 
@@ -61,93 +63,14 @@ But that doesn't mean that you can only use Fortran. Other programming languages
 
 If you want to see a detailed comparison between Python, C++, and Fortran on scientific computing, check out [this amazing paper](http://downloads.hindawi.com/journals/sp/2014/870146.pdf).
 
-<script type="application/ld+json">
-\{
- "@context": "https://schema.org", 
- "@type": "BlogPosting",
- "url": "https://lautarolobo.xyz/blog/february-of-fortran",
- "mainEntityOfPage": "https://lautarolobo.xyz/blog/february-of-fortran",
- "headline": "February of Fortran",
- "alternativeHeadline": "February of Fortran",
- "genre": "Fortran", 
- "keywords": [
-  "fortran", 
-  "february", 
-  "programming",
-  "coding",
-  "computational physics",
-  "high-performance computing"
-],  
- "wordcount": "476",
- "datePublished": "2020-02-29",
- "dateCreated": "2020-02-29",
- "dateModified": "2024-06-25",
- "description": "February smells like Fortran right? Well, maybe not but, is Fortran still something?",
- "isFamilyFriendly": "true",
- "image": "https://lautarolobo.xyz/images/february-of-fortran-653ed35e.webp",
- "publisher": \{
-  "@type": "Organization",
-  "name": "Lautaro Jordan Lobo Ravarotto",
-  "url": "https://lautarolobo.xyz",
-  "logo": \{  
-   "@type": "ImageObject",
-   "author": "Lautaro Jordan Lobo Ravarotto",
-   "url": "https://lautarolobo.xyz/images/100px-3211424c.jpg"
-   }
-  },
- "author": \{
-  "@type": "Person",
-  "name": "Lautaro Jordan Lobo Ravarotto",
-  "url": "https://lautarolobo.xyz",
-  "email": "contact@lautarolobo.xyz",
-  "birthDate": "2000-04-12",
-  "gender": "male",
-  "nationality": "Argentina",
-  "alumniOf": \{
-   "@type": "CollegeOrUniversity",
-   "legalName": "National University of Córdoba",
-   "sameAs": "https://en.wikipedia.org/wiki/National_University_of_C%C3%B3rdoba",
-   "location": \{
-    "@type": "Place",
-    "sameAs": "http://unc.edu.ar",
-    "name": "National University of Córdoba",
-    "address": \{
-      "@type": "PostalAddress",
-      "streetAddress": "Av. Haya de la Torre s/n",
-      "addressCountry": "Argentina",
-      "addressLocality": "Córdoba",
-      "postalCode": "5000" 
-      }
-     }
-    }
-   },
- "creator": \{
-  "@type": "Person",
-  "name": "Lautaro Jordan Lobo Ravarotto",
-  "url": "https://lautarolobo.xyz",
-  "email": "contact@lautarolobo.xyz",
-  "birthDate": "2000-04-12",
-  "gender": "male",
-  "nationality": "Argentina",
-  "alumniOf": \{
-   "@type": "CollegeOrUniversity",
-   "legalName": "National University of Córdoba",
-   "sameAs": "https://en.wikipedia.org/wiki/National_University_of_C%C3%B3rdoba",
-   "location": \{
-    "@type": "Place",
-    "sameAs": "http://unc.edu.ar",
-    "name": "National University of Córdoba",
-    "address": \{
-      "@type": "PostalAddress",
-      "streetAddress": "Av. Haya de la Torre s/n",
-      "addressCountry": "Argentina",
-      "addressLocality": "Córdoba",
-      "postalCode": "5000" 
-      }
-     }
-    }   
-   }
-  }
- }
-},
-</script>
+<Schema
+  title={frontmatter.title}
+  url="https://lautarolobo.xyz/blog/february-of-fortran"
+  description="February smells like Fortran right? Well, maybe not but, is Fortran still something?"
+  alternativeTitle="Fortran on February"
+  genre="Fortran"
+  keywords="fortran,february,programming,coding,computational physics,high-performance computing"
+  wordcount="476"
+  date={frontmatter.date}
+  dateModified="2024-06-25T00:00:00-03:00"
+/>

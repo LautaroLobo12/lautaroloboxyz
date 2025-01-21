@@ -28,7 +28,7 @@
     "disqus-react": "^1.1.5",
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",
-    "katex": "^0.16.10",
+    "katex": "^0.16.21",
     "marked": "^15.0.5",
     "prettier-plugin-astro": "0.14.1",
     "prettier-plugin-tailwindcss": "0.6.9",

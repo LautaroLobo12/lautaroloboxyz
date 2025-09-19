@@ -1,0 +1,128 @@
+---
+title: Some Notes I Took on Software Architecture
+date: 2025-09-19T11:20:00-03:00
+tags: [Software Architecture]
+image: /images/my-notes-on-software-architecture.webp
+author: Lautaro Lobo
+---
+
+import Schema from "src/content/schema.astro";
+
+I watched a few videos, read some stuff online about Software Architecture, and took some notes in the process.
+
+I hope these make sense.
+
+<hr> </hr>
+
+First of all, you want to **analyze:**  
+- the functional requirements  
+- the non-functional requirements
+
+Functional requirements are the “what”, often captured in use cases, user stories, or a detailed list of features.  
+Non-functional requirements are the “how”. Like performance, reliability, security, maintainability, etc. You can look into ISO/IEC 25010 as a reference.
+
+When planning a software architecture, you want to put structure _over_ implementation. You need to take into consideration the budget, along with any restrictions you may have, like regulatory constraints (like [HIPAA](https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html)), industry standards, talent pool (the team you have), etc.
+
+Try to spot any conflicting requirements that could be problematic along the way. Catching these earlier will save you tons of time and overhead. If something needs to be rethought, this is the time.
+
+**Prioritize** the NFRs so you have a better understanding of the core business, what drives the solution, and the necessity behind it. This will make it clearer where you should focus and put more effort into, and what improvements could be added in later stages.
+
+With all this in mind, try to imagine how this system could grow and evolve in time.
+
+Next, you have to **choose one**.
+
+<center>
+  <div style="background-color:white;width:fit-content;max-width:720px;">
+    ![](/images/software-architecture-patterns.webp)
+  </div>
+</center>
+
+And remember:
+
+<center>
+  <div style="width:fit-content;max-width:520px;">
+    ![](/images/software-architecture-patterns-key-points.webp)
+  </div>
+</center>
+
+Do not forget about these three core concepts:
+
+<center>
+  <div style="width:fit-content;max-width:810px;">
+    ![](/images/software-architecture-core-concepts.webp)
+  </div>
+</center>
+
+You should always keep these in mind.
+
+It has to work, so it _needs_ to be **performant.**
+
+It has to be **scalable**, because you never know how big you can get.
+
+Focusing on **maintainability** is also crucial. Maintainable systems are easier to understand, modify, and fix, benefiting both the dev experience and the client. Instead of creating something that only a few people can handle, you will build a system that is a joy to work with and a gift to those who use it.
+
+<hr></hr>
+
+When you have a shared state between servers (which happens with a microservices architecture, or any other type of [distributed system](https://www.baeldung.com/cs/distributed-systems-guide)), the CAP theorem applies.
+
+CAP stands for Consistency, Availability, and Partition Tolerance. The CAP theorem states that you can only choose one of the two.
+
+Partition tolerance is required for distributed systems, so the trade-offs usually are:
+
+<center>
+  **Consistency > Availability**
+</center>
+
+Often used for banking or in relational databases, when you block new writes to the DB, causing the system to go temporarily unavailable.
+
+<center>
+  **Availability > Consistency**
+</center>
+
+When writes happen at the same time, consistency may be lost. You need to implement a sorting or prioritization engine. This is often picked for social media or e-commerce apps.
+
+I believe the most used one is A+P (Availability + Partition tolerance).
+
+You need to manage these trade-offs gracefully, with some strategy to resolve inconsistencies quickly.
+
+<hr></hr>
+
+With scaling comes latency and slower response times; that’s where **cache** comes into play.
+
+A **cache** is a component that stores data so that requests that need the same data will be served faster.
+
+Some examples are in-memory cache, [CDNs](https://www.cloudflare.com/learning/cdn/what-is-a-cdn/), [Redis](https://redis.io/), [memcached](https://memcached.org/), etc.
+
+Every layer/component of an architecture can, and should, have a cache. But you can add this in later stages, as an optimization.
+
+<hr></hr>
+
+And finally:
+
+<center>
+  <div style="width:fit-content;max-width:520px;">
+    ![](/images/software-architecture-security.webp)
+  </div>
+</center>
+
+I think that’s pretty much it.
+
+<hr></hr>
+
+See also:
+
+- IBM’s [Microservices Overview](https://www.ibm.com/think/topics/microservices)  
+- [Software Architecture and Design](https://www.youtube.com/playlist?list=PL4JxLacgYgqTgS8qQPC17fM-NWMTr5GW6) YouTube videos by Christian from [@ADevStory](https://www.youtube.com/@ADevStory)  
+- AWS’s [Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html)
+
+<Schema 
+  title={frontmatter.title}
+  url="https://lautarolobo.xyz/blog/some-notes-i-took-on-software-architecture"
+  description="Software Architecture down to earth!"
+  alternativeTitle="Introduction to Software Architecture"
+  genre="Software Architecture"
+  keywords="systems design,software architecture,software"
+  wordcount="560"
+  date={frontmatter.date}
+  dateModified={frontmatter.date}
+/>

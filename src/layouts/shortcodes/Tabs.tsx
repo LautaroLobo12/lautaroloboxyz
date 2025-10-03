@@ -16,7 +16,7 @@ const Tabs = ({ children }: { children: React.ReactElement }) => {
   }, [active]);
 
   const tabLinks = Array.from(
-    children.props.value.matchAll(
+    (children.props as { value: string }).value.matchAll(
       /<div\s+data-name="([^"]+)"[^>]*>(.*?)<\/div>/gs,
     ),
     (match: RegExpMatchArray) => ({ name: match[1], children: match[0] }),

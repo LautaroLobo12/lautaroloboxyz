@@ -1,5 +1,5 @@
-const fs = require("fs");
-const path = require("path");
+import { readdirSync, readFileSync, statSync, writeFileSync } from "fs";
+import { join } from "path";
 
 const rootDirs = ["src/pages", "src/hooks", "src/layouts", "src/styles"];
 
@@ -15,21 +15,21 @@ rootDirs.forEach(removeDarkModeFromPages);
 configFiles.forEach(removeDarkMode);
 
 function removeDarkModeFromFiles(filePath, regexPatterns) {
-  const fileContent = fs.readFileSync(filePath, "utf8");
+  const fileContent = readFileSync(filePath, "utf8");
   let updatedContent = fileContent;
   regexPatterns.forEach((pattern) => {
     const regex = new RegExp(pattern, "g");
     updatedContent = updatedContent.replace(regex, "");
   });
-  fs.writeFileSync(filePath, updatedContent, "utf8");
+  writeFileSync(filePath, updatedContent, "utf8");
 }
 
 function removeDarkModeFromPages(directoryPath) {
-  const files = fs.readdirSync(directoryPath);
+  const files = readdirSync(directoryPath);
 
   files.forEach((file) => {
-    const filePath = path.join(directoryPath, file);
-    const stats = fs.statSync(filePath);
+    const filePath = join(directoryPath, file);
+    const stats = statSync(filePath);
     if (stats.isDirectory()) {
       removeDarkModeFromPages(filePath);
     } else if (stats.isFile()) {
@@ -45,9 +45,9 @@ function removeDarkMode(configFile) {
   if (filePath === "tailwind.config.js") {
     removeDarkModeFromFiles(filePath, patterns);
   } else {
-    const contentFile = JSON.parse(fs.readFileSync(filePath, "utf8"));
+    const contentFile = JSON.parse(readFileSync(filePath, "utf8"));
     patterns.forEach((pattern) => deleteNestedProperty(contentFile, pattern));
-    fs.writeFileSync(filePath, JSON.stringify(contentFile));
+    writeFileSync(filePath, JSON.stringify(contentFile));
   }
 }
 

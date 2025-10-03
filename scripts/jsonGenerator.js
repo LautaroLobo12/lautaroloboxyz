@@ -1,6 +1,6 @@
-const fs = require("fs");
-const path = require("path");
-const matter = require("gray-matter");
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "fs";
+import matter from "gray-matter";
+import { join, sep } from "path";
 
 const CONTENT_DEPTH = 2;
 const JSON_FOLDER = "./.json";
@@ -8,20 +8,20 @@ const BLOG_FOLDER = "src/content/blog";
 
 // get data from markdown
 const getData = (folder, groupDepth) => {
-  const getPath = fs.readdirSync(folder);
+  const getPath = readdirSync(folder);
   const removeIndex = getPath.filter((item) => !item.startsWith("-"));
 
   const getPaths = removeIndex.flatMap((filename) => {
-    const filepath = path.join(folder, filename);
-    const stats = fs.statSync(filepath);
+    const filepath = join(folder, filename);
+    const stats = statSync(filepath);
     const isFolder = stats.isDirectory();
 
     if (isFolder) {
       return getData(filepath, groupDepth);
     } else if (filename.endsWith(".md") || filename.endsWith(".mdx")) {
-      const file = fs.readFileSync(filepath, "utf-8");
+      const file = readFileSync(filepath, "utf-8");
       const { data, content } = matter(file);
-      const pathParts = filepath.split(path.sep);
+      const pathParts = filepath.split(sep);
       const slug =
         data.slug ||
         pathParts
@@ -49,12 +49,12 @@ const getData = (folder, groupDepth) => {
 
 try {
   // create folder if it doesn't exist
-  if (!fs.existsSync(JSON_FOLDER)) {
-    fs.mkdirSync(JSON_FOLDER);
+  if (!existsSync(JSON_FOLDER)) {
+    mkdirSync(JSON_FOLDER);
   }
 
   // create json files
-  fs.writeFileSync(
+  writeFileSync(
     `${JSON_FOLDER}/posts.json`,
     JSON.stringify(getData(BLOG_FOLDER, 2)),
   );
@@ -62,7 +62,7 @@ try {
   // merger json files for search
   const posts = require(`../${JSON_FOLDER}/posts.json`);
   const search = [...posts];
-  fs.writeFileSync(`${JSON_FOLDER}/search.json`, JSON.stringify(search));
+  writeFileSync(`${JSON_FOLDER}/search.json`, JSON.stringify(search));
 } catch (err) {
   console.error(err);
 }

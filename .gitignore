@@ -22,6 +22,3 @@ yarn.lock
 
 # ignore .astro directory
 .astro
-
-#ignore local settings
-.vscode

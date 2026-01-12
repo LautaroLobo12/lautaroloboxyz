@@ -4,6 +4,12 @@
       "name": "Privacy Policy",
       "url": "/privacy-policy",
       "rel": "privacy-policy"
+    },
+    {
+      "name": "Fan Pickems",
+      "url": "https://fanpickems.lautarolobo.xyz",
+      "rel": "noopener",
+      "image": "/images/fanpickems-logo.png"
     }
   ]
 }

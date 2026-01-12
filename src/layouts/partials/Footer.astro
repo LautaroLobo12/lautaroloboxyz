@@ -1,12 +1,13 @@
 ---
 import Logo from "@/components/Logo.astro";
 import Social from "@/components/Social.astro";
+import ImageMod from "@/components/ImageMod.astro";
 import config from "@/config/config.json";
 import menu from "@/config/menu.json";
 import social from "@/config/social.json";
 import { markdownify } from "@/lib/utils/textConverter";
 
-const { footer }: { footer: { name: string; url: string; rel: string }[] } = menu;
+const { footer }: { footer: { name: string; url: string; rel: string; image?: string }[] } = menu;
 ---
 
 <footer class="bg-theme-light dark:bg-darkmode-theme-light">
@@ -19,8 +20,21 @@ const { footer }: { footer: { name: string; url: string; rel: string }[] } = men
         <ul>
           {
             footer.map((menu) => (
-              <li class="m-3 inline-block">
-                <a href={menu.url} rel={menu.rel}>{menu.name}</a>
+              <li class="m-3 inline-block align-middle">
+                <a href={menu.url} rel={menu.rel}>
+                  {menu.image ? (
+                    <ImageMod
+                      src={menu.image}
+                      alt={menu.name}
+                      width={100}
+                      height={30}
+                      class="inline-block"
+                      style={{ maxHeight: "30px", width: "auto" }}
+                    />
+                  ) : (
+                    menu.name
+                  )}
+                </a>
               </li>
             ))
           }
@@ -32,7 +46,19 @@ const { footer }: { footer: { name: string; url: string; rel: string }[] } = men
     </div>
   </div>
   <div class="border-t border-border py-7 dark:border-darkmode-border">
-    <div class="container text-center text-light dark:text-darkmode-light">
+    <div class="container flex flex-col items-center justify-center space-y-3 text-center text-light dark:text-darkmode-light md:flex-row md:space-x-4 md:space-y-0">
+      <a
+        href="https://astro.build"
+        target="_blank"
+        rel="noopener"
+      >
+        <img
+          src="https://astro.badg.es/v2/built-with-astro/tiny.svg"
+          alt="Built with Astro"
+          width="120"
+          height="20"
+        />
+      </a>
       <p set:html={markdownify(config.params.copyright)} />
     </div>
   </div>

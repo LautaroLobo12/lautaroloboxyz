@@ -11,20 +11,20 @@ import Schema from "src/content/schema.astro";
 I wrote first the solution using a while loop:
 
 ```javascript
-function sign(array) \{
+function sign(array) {
   let count = array.length;
   let i = 0, positives = 0, negatives = 0, zeros = 0;
-  while (i < count) \{
-    if (array[i] === 0) \{
+  while (i < count) {
+    if (array[i] === 0) {
       zeros += 1;
-    } if (array[i] > 0)\{
+    } if (array[i] > 0) {
       positives += 1;
-    } if (array[i] < 0)\{
+    } if (array[i] < 0) {
       negatives += 1;
     }
     i++;
   }
-  return \{zeros, positives, negatives};
+  return {zeros, positives, negatives};
 }
 
 console.log(sign([-3,0,6,2]))
@@ -33,19 +33,19 @@ console.log(sign([-3,0,6,2]))
 And it works! Then, I wrote the same but with a for loop:
 
 ```javascript
-function sign(array) \{
+function sign(array) {
   let count = array.length;
   let positives = 0, negatives = 0, zeros = 0;
-  for (let i = 0; i < count; i++) \{
-    if (array[i] === 0) \{
+  for (let i = 0; i < count; i++) {
+    if (array[i] === 0) {
       zeros += 1;
-    } if (array[i] > 0)\{
+    } if (array[i] > 0) {
       positives += 1;
-    } if (array[i] < 0)\{
+    } if (array[i] < 0) {
       negatives += 1;
     }
   }
-  return \{zeros, positives, negatives};
+  return {zeros, positives, negatives};
 }
 
 console.log(sign([3,-1,0,-2]))

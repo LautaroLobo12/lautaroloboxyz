@@ -11,13 +11,13 @@ import Schema from "src/content/schema.astro";
 As before, I first made it with a while loop:
 
 ```javascript
-function positionOf(n,array)\{
+function positionOf(n,array) {
   let i = 0;
   let count = array.length;
-  while (i < count)\{
-    if (array[i] == n)\{
+  while (i < count) {
+    if (array[i] == n) {
       return i;
-    } else \{
+    } else {
       i++;
     }
   }
@@ -30,10 +30,10 @@ console.log(positionOf(5,[-5,0,50,5,35]))
 And then, a for loop:
 
 ```javascript
-function positionOf1(n,array)\{
+function positionOf1(n,array) {
   let count = array.length;
-  for (let i = 0; i < count; i++)\{
-    if (array[i] == n)\{
+  for (let i = 0; i < count; i++) {
+    if (array[i] == n) {
       return i;
     }
   }

@@ -11,10 +11,10 @@ import Schema from "src/content/schema.astro";
 I first wrote this code using the `push()` method:
 
 ```javascript
-function sumToArray(n, array)\{
+function sumToArray(n, array) {
   let length = array.length;
   let output = []
-  for (let i = 0; i < length; i++)\{
+  for (let i = 0; i < length; i++) {
     output.push(array[i]+n);
   }
   return output;
@@ -26,10 +26,10 @@ console.log(sumToArray(5,[1,2,3,4]))
 Then, using concatenation:
 
 ```javascript
-function sumToArray1(n, array)\{
+function sumToArray1(n, array) {
   let length = array.length;
   let output = []
-  for (let i = 0; i < length; i++)\{
+  for (let i = 0; i < length; i++) {
     output += (n + array[i] + '.');
   }
   return output;
@@ -43,8 +43,8 @@ This returns a string, not an array.
 And finally, using the `map()` method:
 
 ```javascript
-function sumToArray2(n, array)\{
-  return array.map(function (element)\{
+function sumToArray2(n, array) {
+  return array.map(function (element) {
     return element + 2;
   })
 }

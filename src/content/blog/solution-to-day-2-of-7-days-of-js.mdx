@@ -11,14 +11,14 @@ import Schema from "src/content/schema.astro";
 Let's see. First of all a solution using a while loop:
 
 ```javascript
-function sumboth(array) \{
+function sumboth(array) {
   let count = array.length;
   let i = 0, even = 0, odd = 0;
-  while (i < count) \{
+  while (i < count) {
     array[i] % 2 == 0 ? even += array[i] : odd += array[i];
     i++;
   }
-  return \{even, odd};
+  return {even, odd};
 }
 
 console.log(sumboth([3,1,6,2]))
@@ -27,13 +27,13 @@ console.log(sumboth([3,1,6,2]))
 And as a second choice, a solution using a for loop:
 
 ```javascript
-function sumboth2(array) \{
+function sumboth2(array) {
   let count = array.length;
   let even = 0, odd = 0;
-  for (let i = 0; i < count; i++) \{
+  for (let i = 0; i < count; i++) {
     array[i] % 2 == 0 ? even += array[i] : odd += array[i];
   }
-  return \{even, odd};
+  return {even, odd};
 }
 
 console.log(sumboth2([3,1,4,2]))

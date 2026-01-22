@@ -11,7 +11,7 @@ import Schema from "src/content/schema.astro";
 So, first the shortest solution:
 
 ```javascript
-function reverseString(string) \{
+function reverseString(string) {
   return string.split('').reverse().join('');
 }
 
@@ -23,7 +23,7 @@ I've used 3 methods here: `split()`, `reverse()` and `join()`. The split method 
 Then I cracked my head up to make it work with a for loop:
 
 ```javascript
-function reverseString(string) \{
+function reverseString(string) {
   let length = string.length - 1;
   let output = '';
   for (let i = length; i >= 0; i--)
@@ -37,10 +37,10 @@ console.log(reverseString('Bananas'))
 And also implemented this same algorithm as a while loop:
 
 ```javascript
-function reverse(string) \{
+function reverse(string) {
   let output = '';
   let i = string.length - 1;
-  while (i >= 0)\{
+  while (i >= 0) {
     output += string[i];
     i--;
   }

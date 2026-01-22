@@ -12,11 +12,11 @@ First of all, we have a functional solution, not the best solution (it may take 
 
 ```javascript
 function factorial(n)
-\{
-    if (n==0 || n==1)\{
+{
+    if (n==0 || n==1) {
       return 1;
     }
-    else \{
+    else {
       return n * factorial( n-1 );
     }
 }
@@ -29,9 +29,9 @@ The good thing is that is pretty easy to read.
 Now, a better solution would be something like this:
 
 ```javascript
-function factorial(n)\{
+function factorial(n) {
   let j = 1;
-  for (let i = 1; i <= n; i++)\{
+  for (let i = 1; i <= n; i++) {
     j = j * i;
   }
   return j;
@@ -45,13 +45,13 @@ An imperative solution using a for loop. This makes our function run faster.
 Now let's see the average function. First of all, a solution using a for loop:
 
 ```javascript
-function average(array) \{
+function average(array) {
   let count = array.length;
-  if (count == 0)\{
+  if (count == 0) {
     return 0;
-  } else \{
+  } else {
     var sum = 0;
-    for (var i = 0; i < count; i++) \{
+    for (var i = 0; i < count; i++) {
     sum = sum + array[i];
   }
   return sum / count;
@@ -64,11 +64,11 @@ console.log(average([2,4]))
 I also made it using the `reduce()` method and an arrow function. Something weird came out:
 
 ```javascript
-function average(array) \{
+function average(array) {
   let count = array.length;
-  if (count == 0)\{
+  if (count == 0) {
     return 0;
-  } else \{
+  } else {
      return array.reduce( (a,b) => a + b) / count;
   }
 

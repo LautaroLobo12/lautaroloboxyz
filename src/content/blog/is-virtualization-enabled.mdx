@@ -11,7 +11,7 @@ Interested in virtual machines? And you need to know if your PC can run them? We
 
 First the never-fails one:
 
-```
+```shell
 lscpu
 ```
 
@@ -21,13 +21,13 @@ Actually that's it. That command _never_ fails. But here are another options, be
 
 With the next one, you'll get 'vmx' (Intel) or 'smv' (AMD) on the output. Hopefully colored.
 
-```
+```shell
 egrep "(svm|vmx)" /proc/cpuinfo
 ```
 
 If it doesn't shows those keywords with colors, don't worry, I got you covered:
 
-```
+```shell
 egrep --color -i "svm|vmx" /proc/cpuinfo
 ```
 
@@ -35,26 +35,26 @@ Here, the last one. If nothing worked out, don't lose hope! This one will do the
 
 Some OS come with the cpu-checker package pre-installed. It may be not your case, so here's how you can installit, quick and easy with
 
-```
+```shell
 sudo apt-get install cpu-checker
 ```
 
 And then, let the magic happens:
 
-```
+```shell
 sudo kvm-ok
 ```
 
 If you have virtualization enabled, you'll see something like
 
-```
+```shell
 INFO: /dev/kvm exists
 KVM acceleration can be used
 ```
 
 Otherwise:
 
-```
+```shell
 INFO: Your CPU does not support KVM extensions
 KVM acceleration can NOT be used
 ```

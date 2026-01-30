@@ -170,6 +170,12 @@ So, is there a condition where the O(log n) binary search *is* guaranteed to fin
 
 If an array has at most one peak, then finding *a* peak is the same as finding *the* peak. Our binary search will inevitably converge on that single global maximum. This is why a function like `has_single_peak` can be a useful preprocessing step if your specific application requires finding the global maximum in logarithmic time.
 
+<hr/>
+
+<div class="ml-embedded" data-form="rkhGat"></div>
+
+<hr/>
+
 ### What About Plateaus or 'Long Peaks'?
 
 This is an excellent question that tests the robustness of our algorithms. What happens with an array like `{1, 5, 5, 4}` where the peak is a plateau?

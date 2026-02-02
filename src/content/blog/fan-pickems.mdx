@@ -1,0 +1,135 @@
+---
+title: "Building a Hybrid Esports Pick'em App with Astro and Firebase"
+date: 2026-02-02T06:50:00-03:00
+tags: ["Astro", "Firebase", "Software Architecture"]
+image: /images/fanpickems-cover.webp
+author: "Lautaro Lobo"
+---
+
+import Schema from "src/content/schema.astro";
+
+Static sites are fast. They're cheap to host and great for SEO. But what happens when you need to handle highly dynamic user data, as a fan pick'em web app for the [LCK (League of Legends Champions Korea)](https://x.com/LCK)?
+
+You don't have to abandon the benefits of [Static Site Generation (SSG)](https://developer.mozilla.org/en-US/docs/Glossary/SSG) for a full [Single Page Application (SPA)](https://developer.mozilla.org/en-US/docs/Glossary/SPA). By leveraging **Astro's Island Architecture** and **[Firebase](https://firebase.google.com/)**, I built **[Fan Pickems](https://fanpickems.lautarolobo.xyz/)**—an app that serves tournament data statically while handling user picks and authentication dynamically on the client.
+
+### Static Data vs. Dynamic Users
+
+A Pick'em app has two distinct types of data:
+
+1.  **Tournament Data:** Teams, schedules, and rules. This rarely changes.
+2.  **User Data:** User authentication state and their specific picks. This is unique to every visitor and changes frequently.
+
+A traditional SPA would fetch *everything* on the client, leading to loading spinners and slower [First Contentful Paint (FCP)](https://developer.chrome.com/docs/lighthouse/performance/first-contentful-paint). A traditional server-rendered app would require a running server, adding cost and complexity.
+
+I wanted the best of both: the speed of static HTML for the tournament structure, and the interactivity of an SPA for the user's picks. Here's where [Astro Islands](https://docs.astro.build/en/concepts/islands/) come to the rescue!
+
+Astro's Islands architecture allows us to ship static HTML for the page _shell_ and hydrate only the interactive components.
+
+### 1. Fetching Tournament Data at Build Time
+
+Since tournament schedules don't change often, makes sense to fetch them at **build time**. In the `PicksInterface.astro` component, the frontmatter script runs only when the site builds:
+
+```typescript
+---
+import { getCurrentTournament, getTeamsFromIds } from "../../scripts/services/picks-service";
+
+// This runs at build time!
+const tournament = await getCurrentTournament();
+let teams: Team[] = [];
+
+if (tournament) {
+  teams = await getTeamsFromIds(tournament.participatingTeams);
+}
+---
+```
+
+This generates static HTML with all the tournament details, and gets sent to the client-side script using data attributes:
+
+```astro
+<div
+  class="picks-interface"
+  id="picks-interface"
+  data-tournament={JSON.stringify(tournament)}
+  data-teams={JSON.stringify(teams)}
+>
+  <!-- Static HTML for the interface rendered here -->
+</div>
+<script src="./picks-interface.ts"></script>
+```
+
+### 2. Handling Dynamic User Data
+
+While the tournament structure is static, the user's interaction with it is dynamic. I have a separate TypeScript file, `picks-interface.ts`, to handle the client-side logic.
+
+This script "hydrates" the static HTML. It connects to Firebase Authentication to check if a user is logged in and fetches their existing picks:
+
+```typescript
+
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getUserPicksForTournament } from '../../scripts/services/picks-service';
+
+// Initialize on the client
+const auth = getAuth();
+
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    // User is logged in, fetch their specific picks
+    getUserPicksForTournament(this.state.tournament.id, user.uid).then(userPicks => {
+      if (userPicks) {
+        // update UI with picks
+        this.renderPicks();
+      }
+    });
+  }
+});
+```
+
+This separation allows the page to load instantly with the tournament grid visible. The user's previous selections "pop" in a moment later once auth is confirmed, feeling quick and responsive.
+
+### 3. Client-Side Validation
+
+I'm also handling validation on the client to give immediate feedback. For example, ensuring a user doesn't pick more teams than allowed or submit after the deadline:
+
+```typescript
+export const validatePicks = (picks: UserPicks['picks'], tournament: Tournament) => {
+  const errors: string[] = [];
+  
+  Object.entries(tournament.stages).forEach(([stage, config]) => {
+    // Check deadline
+    const now = new Date();
+    const deadline = new Date(config.deadline.seconds * 1000);
+
+    if (now > deadline) {
+      errors.push(`Deadline for ${stage} has passed`);
+    }
+  });
+
+  return { valid: errors.length === 0, errors };
+};
+```
+
+I can enforce these same rules using **[Firestore Security Rules](https://firebase.google.com/docs/rules)** on the backend, ensuring that even if someone bypasses the client-side check, the database remains secure.
+
+## Conclusion
+
+Thanks to the chosen hybrid architecture, I'm taking care of these three key points:
+
+*   **Performance:** The core content (the tournament grid) is static HTML.
+*   **Cost:** I host the site statically, avoiding the need for a dedicated [Node.js](https://nodejs.org/en/) server.
+*   **Security:** User data is secure through Firebase Auth and Firestore rules, separating public and private data.
+
+<hr/>
+
+This project serves as a demonstration that dynamic apps don't always need a complex SSR setup. Astro's static output and client-side islands allow you to create interactive applications that remain simple and performant.
+
+<Schema 
+  title={frontmatter.title}
+  url="https://lautarolobo.xyz/blog/fan-pickems"
+  description="How I combined Astro's static site generation with Firebase's dynamic capabilities to build a performant LCK Fan Pick'ems application"
+  alternativeTitle="Hybrid Architecture with Astro and Firebase"
+  genre="Astro"
+  keywords="astro,firebase,typescript,architecture,ssg,web architecture,spa,software architecture"
+  wordcount="504"
+  date={frontmatter.date}
+  dateModified={frontmatter.date}
+/>

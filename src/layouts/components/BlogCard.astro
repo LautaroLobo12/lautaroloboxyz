@@ -12,15 +12,15 @@ const { data, related } = Astro.props;
 const { title, image, date, author } = data.data;
 
 let containerClass = "bg-body dark:bg-darkmode-body mx-auto";
-related ? containerClass += "ml-0" : null;
+related ? containerClass += " max-w-[320px]" : containerClass += " max-w-[460px]";
 ---
 
 
-<div class={ containerClass } style="width:fit-content;block-size:fit-content;">
+<div class={ containerClass } style={related ? "" : "width:fit-content;block-size:fit-content;"}>
   <a
     href={`/${blog_folder}/${data.id}`}
   >
-    <div style="width:fit-content;block-size:fit-content;">
+    <div style={related ? "" : "width:fit-content;block-size:fit-content;"}>
 
       <!-- image for home post list-->
       {
@@ -49,6 +49,16 @@ related ? containerClass += "ml-0" : null;
               format="webp"
               style="aspect-ratio: 16/7"
             />
+        )
+      }
+
+      <!-- spacer for related posts without image (desktop only) -->
+      {
+        (!image && related) && (
+            <div
+              class="hidden md:block mb-6 rounded"
+              style="aspect-ratio: 16/7; width: 320px;"
+            ></div>
         )
       }
 

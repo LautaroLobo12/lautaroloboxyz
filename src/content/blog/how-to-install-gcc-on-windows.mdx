@@ -1,0 +1,96 @@
+---
+title: How to Install GCC on Windows with w64devkit
+date: 2026-02-09T10:00:00-03:00
+tags: [C, Windows, Compilers]
+image: /images/install-gcc-w64devkit-cover.webp
+author: Lautaro Lobo
+---
+
+import Schema from "src/content/schema.astro";
+
+In this post, I'll go over the process of installing `w64devkit`, launching its pre-configured environment, and using `gcc` to compile and run your C programs with some basic flags. Let's get started!
+
+### Installing w64devkit
+
+`w64devkit` provides an environment to run [GCC](https://en.wikipedia.org/wiki/GNU_C_Compiler) without the hassle of complex installations.
+
+*   Download `w64devkit` from the [official GitHub releases page](https://github.com/skeeto/w64devkit/releases)
+*   Look for the most recent release and download the `.zip` archive. This archive contains everything you need.
+
+ You might see `.exe` installers, but for portability and simplicity, use the `.zip` file.
+
+Next, extract all the contents of the downloaded `.zip` file into your chosen folder (could be Downloads, Documents, a new folder you create...).
+
+That's it! There's no further setup or complex installation routines.
+
+### Opening Your Local Development Environment
+
+With `w64devkit` extracted, you now have a self-contained environment ready to use.
+
+Locate `w64devkit.exe` within the folder where you extracted `w64devkit` (e.g., `C:\w64devkit\w64devkit.exe`).
+
+Double-click on `w64devkit.exe`. This will open a pre-configured terminal window. This terminal is a [MinGW64](https://en.wikipedia.org/wiki/Mingw-w64) shell.
+
+Once the `w64devkit` terminal is open, you'll want to navigate to the directory location where your C source files are. Use the standard `cd` (change directory) command. For example, if your C project is in `C:\Users\YourUser\Documents\MyCProject`, you would type:
+        
+```bash
+cd /c/Users/YourUser/Documents/MyCProject
+```
+
+Remember to use forward slashes (`/`) for paths, as usual in Unix-based shells.
+
+### Compiling and Running Your C Program with GCC
+
+Once your environment is ready and you're in your project directory, the final step is to compile and run your C code.
+
+`gcc` is the workhorse for compiling C (and C++) code. Its primary job is to take your source code files (`.c` or `.cpp`) and turn them into an executable program.
+
+For a simple program, you might use a command like this:
+
+```bash
+gcc main.c -o main_executable
+```
+        
+Here, `main.c` is your source file, and `-o main_executable` tells `gcc` to name the resulting executable `main_executable.exe`.
+
+### Understanding GCC Flags
+`gcc` comes with a lot of flags to help catch errors at compilation time and enforce good practices. Here are some of the most common:
+    *   **`-Wall`**: This flag stands for "Warning all." It enables a comprehensive set of warning messages that help you catch potential issues. These aren't strict errors, but they often point to logical flaws or common programming mistakes that could lead to bugs.
+    *   **`-Wextra`**: Going a step beyond `-Wall`, this flag enables even more warnings, often related to niche but still important programming pitfalls. Combining `-Wall` and `-Wextra` provides excellent coverage.
+    *   **`-Werror`**: This is a critical flag for professional development. It treats all compiler warnings as errors. This means if your code triggers even a single warning, the compilation process will fail. This will force you to address every potential issue, leading to more robust and reliable software.
+    *   **`-std=c99`**: This flag specifies the [C programming language standard](https://www.geeksforgeeks.org/c/c-programming-language-standard/) to use. `c99` refers to the 1999 ISO C standard, which is widely adopted and provides a good balance of features and compatibility. Using a specific standard ensures your code is portable and behaves consistently across different compilers.
+    *   **`-o <output_executable>`**: As mentioned before, this flag allows you to name the output executable file explicitly. If omitted, `gcc` will default to `a.exe` (or `a.out` on Linux/macOS).
+
+### Putting It All Together
+    For a typical project involving different source files, like a [`peak_finder` algorithm](https://lautarolobo.xyz/blog/find-peak-of-array-c), combining these flags gives you a powerful compilation command:
+    ```bash
+    gcc -Wall -Werror -Wextra -std=c99 main.c array_helpers.c -o peak_finder
+    ```
+    This command compiles `main.c` and `array_helpers.c` together, applies all the specified warnings (treating them as errors), adheres to the C99 standard, and creates an executable named `peak_finder.exe`.
+
+### Running the Program
+    Once `gcc` compiles your program, you can run it from the `w64devkit` terminal.
+    *   To run your executable, type `./` followed by the executable's name. The `./` prefix is important because it tells the shell to look for the executable in the current directory.
+    *   If your program expects command-line arguments, you can pass them directly:
+        ```bash
+        ./peak_finder test_array.txt
+        ```
+        This command would execute `peak_finder.exe` and pass `test_array.txt` as an argument, which your C program can then process.
+
+<hr/>
+
+Interested in reading more of my posts and keeping an eye on this blog? <a class="ml-onclick-form" href="javascript:void(0)" onclick="ml('show', 'rkhGat', true)" rel="nofollow" title="My Newsletter">I have a newsletter!</a>
+
+I hope this post helped you on your development journey. See you in the next post 🚀
+
+<Schema
+  title={frontmatter.title}
+  url="https://lautarolobo.xyz/blog/how-to-install-gcc-on-windows"
+  description="A quick guide to installing w64devkit for C development on Windows and compiling programs with GCC flags"
+  alternativeTitle="Setting Up a C Development Environment on Windows with w64devkit"
+  genre="C"
+  keywords="c,gcc,w64devkit,windows,development,programming"
+  wordcount="713"
+  date={frontmatter.date}
+  dateModified={frontmatter.date}
+/>

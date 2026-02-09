@@ -1,0 +1,241 @@
+---
+title: Find the Peak of an Array in C
+date: 2026-02-09T10:00:00-03:00
+tags: [Algorithms, C]
+image: '/images/find-peak-of-array-c.png'
+author: Lautaro Lobo
+---
+
+import Schema from "src/content/schema.astro";
+
+Today, we're going to explore a classic problem: finding a "peak" in an array. 
+
+But first, what is a peak? A peak is an element in an array if that said element is NOT smaller than its neighbors. For an array `a`, an element `a[i]` is a peak if `a[i-1] <= a[i] >= a[i+1]`. 
+
+Going into specifics, the first element `a[0]` will be considered a peak if and only if it is greater than or equal to its right neighbor, `a[1]`. And for the last element, `a[length-1]`, only needs to be greater than or equal to its left neighbor, `a[length-2]`.
+
+Based on this definition, arrays like `{0, 5, 9}`, `{3, 2, 1}`, and `{3, 15, 1}` all have peaks. 
+
+And I hear you say, what if it has more than one peak? Well, for the algorithms we're going to discuss here to work, the array must have **at most one peak**. This condition is met by increasing arrays (`{1, 2, 3}`), decreasing arrays (`{3, 2, 1}`), and classic "unimodal" arrays (`{1, 5, 2}`). Any multi-peak array like `{1,5,2,8,3}` violates these restrictions.
+
+We could think of an algorithm to check if an array complies with our strict preconditions.
+
+```genie
+FUNCTION Has_Single_Peak(array):
+  index = 0
+  // find the index of the end of the uphill slope
+  WHILE index <= (array.length-1) AND array[index] <= array[index+1]:
+    index = index + 1
+  ENDWHILE
+
+  // after the peak, all elements must decrease
+  WHILE index <= (array.length-1):
+    IF array[index] < array[index+1]:
+      // found another uphill slope, so there's a second peak
+      RETURN false
+    index = index + 1
+    ENDIF
+  ENDWHILE
+
+  // if we finished the loop without finding a second peak
+  RETURN true
+```
+
+This pseudocode is pretty much self-explanatory. You can try running a few examples through it (pen-and-paper are your friends here) to manually validate it's behaviour.
+
+Now let me show you how to implement this algorithm in C. It'll be useful for checking that our preconditions are met before running an actual FindPeak algorithm.
+
+```c
+/*
+ * This function checks if an array has at most one peak.
+ */
+int has_single_peak(int array[], unsigned int length) {
+    unsigned int index = 0;
+    // move index to the end of the uphill slope
+    while (index < length-1 && array[index] <= array[index+1]) {
+        index++;
+    }
+    
+    // everything after this point must be strictly decreasing.
+    while (index < length-1) {
+        if (array[index] < array[index+1]) {
+            // we found another uphill slope, so there's more than one peak
+            return 0;
+        }
+        index++;
+    }
+
+    return 1;
+}
+```
+
+It goes exactly as defined in our pseudocode, with the only difference being that the length of the array comes as a parameter to the function, as usual when programming in C.
+
+Finally, after all our preconditions are met, let's get to work! We'll be looking at two different approaches for finding a peak in the C programming language.
+
+### 1. Sequential Search: Brute-Force It
+
+The most straightforward way to find a peak is to find the maximum element in the array. The maximum element will always satisfy the definition of a peak.
+
+```c
+// Function that finds the global maximum element in an array, which is always a peak.
+int array_peak_sequential(int a[], unsigned int length) {
+  unsigned int peak_index = 0;
+  unsigned int i = 0;
+  while (i < length) {
+    if (a[i] > a[peak_index]) {
+      peak_index = i;
+    }
+    i++;
+  }
+  return peak_index;
+}
+```
+
+### Explanation
+
+This is a classic linear scan. It iterates through every element of the array to find the largest one. This algorithm is simple, and it's guaranteed to work for any array, even for arrays with more than one peak. It will always return the index of the globally maximum value, which is always **THE** peak.
+
+The drawback is its time complexity of **O(n)**. For an array with a billion elements, it will require a billion comparisons. We can do much, much better.
+
+### 2. Binary Search: Divide and Conquer
+
+Here is where the magic happens. We can adapt binary search to find a peak in **O(log n)** time. It's a huge improvement.
+
+How is this possible? The power of this algorithm is that by inspecting one or two elements, it can eliminate half of the search space in every step.
+
+```c
+// Function that finds a peak in the array using binary search.
+// This works for ANY array and is guaranteed to find A peak.
+int array_peak_binary(int a[], unsigned int left, unsigned int right) {
+    unsigned int mid;
+    if (left == right) {
+        return left;
+    }
+    
+    mid = left + (right - left) / 2; // Avoids overflow
+
+    if (a[mid] < a[mid + 1]) {
+        // The element to the right is higher.
+        // This means a peak MUST exist in the right half (including mid+1).
+        // Why? If we keep going right and the numbers go up forever, the last element is the peak.
+        // If the numbers go up and then come down, there's a peak where they turn.
+        return array_peak_binary(a, mid + 1, right);
+    } else {
+        // a[mid] >= a[mid + 1]
+        // The element to the right is lower or equal.
+        // This means a peak MUST exist in the left half (including mid).
+        // Why? If a[mid] is also greater than a[mid-1], it's a peak itself.
+        // If it's not, and a[mid-1] is higher, then a peak must exist to the left.
+        return array_peak_binary(a, left, mid);
+    }
+}
+```
+
+### Explanation
+
+This function is a beautiful example of the "divide and conquer" strategy. Let's break down the logic:
+
+1.  We look at the middle element, `a[mid]`, and its right neighbor, `a[mid + 1]`.
+2.  **Case 1: `a[mid] < a[mid + 1]`**
+    *   This tells us we are on an "uphill slope". We don't know what's happening elsewhere, but we know that if we move to the right, we can guarantee it will find a peak. Either the numbers keep increasing until the end of the array (making the last element a peak), or they will eventually turn downwards (creating a peak at the turning point).
+    *   Therefore, we can discard the entire left half of the array and recursively search in the right half: `(mid + 1, right)`.
+3.  **Case 2: `a[mid] >= a[mid + 1]`**
+    *   This tells us we are on a "downhill slope" or flat area. So we can guarantee a peak exists in the left half (including `mid` itself). If `a[mid]` is also greater than its left neighbor, it's a peak. If not, then `a[mid-1]` is greater, and we can continue the argument towards the left.
+    *   Therefore, we can discard the entire right half and recursively search in the left half: `(left, mid)`.
+
+With each step, we cut the search space in half. This gives us a time complexity of **O(log n)**. For an array with a billion elements, this might take only 30 comparisons!
+
+### A Peak vs. *The* Peak
+
+The trade-off for this incredible speed is that the binary search algorithm is guaranteed to find *a* peak, but not *the* peak (i.e., the global maximum), when the array has more than one peak.
+
+Let's consider an array with more than one peak: `{1, 5, 2, 8, 3}`. The peaks are `5` and `8`. The global peak is `8`.
+*   **Initial call:** `array_peak_binary(a, 0, 4)`. `mid` is `2`. `a[2]` is `2`.
+*   **Comparison:** `a[2] < a[3]` (since `2 < 8`). The condition is true.
+*   **Next step:** The algorithm concludes a peak must be in the right half and calls `array_peak_binary(a, 3, 4)`.
+*   **Result:** The search is now constrained to the sub-array `{8, 3}`. It will find the peak at index `3` (the value `8`).
+
+In this case, it found the global maximum. But what if the array was `{1, 8, 2, 5, 3}`?
+*   **Initial call:** `array_peak_binary(a, 0, 4)`. `mid` is `2`. `a[2]` is `2`.
+*   **Comparison:** `a[2] < a[3]` (since `2 < 5`). The condition is true.
+*   **Next step:** The algorithm again searches the right half: `array_peak_binary(a, 3, 4)`.
+*   **Result:** The search is now on `{5, 3}`. It will find the peak at index `3` (the value `5`). It completely missed the higher peak `8` because its decision at `mid` forced it to ignore the left half of the array.
+
+The algorithm is "local" in its decision-making. It doesn't have a global view of the array, which is precisely why it's so fast.
+
+### When Does Binary Search Find *The* Peak?
+
+So, is there a condition where the O(log n) binary search *is* guaranteed to find the one and only global peak? Yes. This happens if the array satisfies the **single-peak condition** we described earlier.
+
+If an array has at most one peak, then finding *a* peak is the same as finding *the* peak. Our binary search will inevitably converge on that single global maximum. This is why a function like `has_single_peak` can be a useful preprocessing step if your specific application requires finding the global maximum in logarithmic time.
+
+<hr/>
+
+<div class="ml-embedded" data-form="rkhGat"></div>
+
+<hr/>
+
+### What About Plateaus or 'Long Peaks'?
+
+This is an excellent question that tests the robustness of our algorithms. What happens with an array like `{1, 5, 5, 4}` where the peak is a plateau?
+
+Let's analyze it:
+1.  **Peak Definition**: Both `5`s are valid peaks. At index 1, `1 <= 5 >= 5` is true. At index 2, `5 <= 5 >= 4` is true.
+2.  **Sequential Search**: This will find the first `5` at index 1 and stop, correctly identifying a peak.
+3.  **`has_single_peak`**: This function also works. It finds the "turn" where the array stops increasing (between the two `5`s) and then confirms the rest of the array isn't increasing again. It identifies this as a valid single-peak structure.
+4.  **Binary Search**: This is the most interesting case. The `else` condition is `a[mid] >= a[mid + 1]`. The "or equal to" part is key.
+    *   Let's trace `{1, 5, 5, 4}`. `left=0`, `right=3`, `mid=1`.
+    *   `a[1]` is `5`. `a[2]` is `5`. The check `a[mid] < a[mid+1]` (`5 < 5`) is **false**.
+    *   The algorithm enters the `else` block and searches the left half, including `mid`. The new search is on `{1, 5}`.
+    *   This process continues until it converges on index 1, a valid peak. The `>=` ensures that when the algorithm encounters a plateau, it treats it as a "downhill" slope, which correctly preserves the logic that a peak must exist in that half of the array.
+
+So yes, all our functions correctly handle plateaus thanks to careful use of `<`, `>`, and `>=`.
+
+### The `main` function and how to use it
+
+Finally, let's see how everything ties together. As we established at the beginning, we are working with arrays that have at most one peak. So we should check this condition before running our binary search.
+
+```c
+int main(int argc, char *argv[]) {
+  char *filepath = NULL;
+  filepath = parse_filepath(argc, argv);
+  
+  int array[MAX_SIZE];
+  unsigned int length = array_from_file(array, MAX_SIZE, filepath);
+  array_dump(array, length);
+
+  if (has_single_peak(array, length)) {
+    unsigned int left = 0;
+    int binary_peak_index = array_peak_binary(array, left, length - 1);
+    printf("A peak was found at index: %d\n", binary_peak_index);
+    printf("The peak value is: %d\n", array[binary_peak_index]);
+  } else {
+    printf("The array does not satisfy the single-peak condition.\n");
+  }
+
+  return 0;
+}
+```
+
+### Explanation
+
+1.  The `main` function parses the command-line arguments to get a file path and reads the array from the file.
+2.  It then checks if array `has_single_peak` and it calls `array_peak_binary` if the condition is met.
+3.  Finally, it prints the index and value of the peak it found.
+
+### Conclusion
+
+Today we've seen how a single problem can be approached in different ways. The sequential search is simple and finds the global maximum, but it's slow with a complexity of **O(n)**. The binary search approach is far more powerful. With the "divide and conquer" strategy, we can find a peak in any array in **O(log n)** time.
+
+<Schema
+  title={frontmatter.title}
+  url="https://lautarolobo.xyz/blog/find-peak-of-array-c"
+  description="Different algorithms to find a peak in an array, implemented in C"
+  alternativeTitle="How to Find the Peak of an Array in C"
+  genre="Algorithms"
+  keywords="algorithm,algorithms,computer science,divide and conquer,programming,coding"
+  wordcount="1427"
+  date={frontmatter.date}
+  dateModified={frontmatter.date}
+/>

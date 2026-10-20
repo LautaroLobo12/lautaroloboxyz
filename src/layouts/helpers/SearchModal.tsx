@@ -1,5 +1,5 @@
-import searchData from ".json/search.json";
 import React, { useEffect, useState } from "react";
+import searchData from "../../../.json/search.json";
 import SearchResult, { type ISearchItem } from "./SearchResult";
 
 const SearchModal = () => {

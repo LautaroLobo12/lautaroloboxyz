@@ -1,7 +1,6 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "baseUrl": ".",
     "target": "es6",
     "allowJs": true,
     "strict": true,
@@ -12,6 +11,9 @@
     "incremental": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
+      "src/*": [
+        "./src/*"
+      ],
       "@/components/*": [
         "./src/layouts/components/*"
       ],

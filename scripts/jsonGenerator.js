@@ -54,13 +54,10 @@ try {
   }
 
   // create json files
-  writeFileSync(
-    `${JSON_FOLDER}/posts.json`,
-    JSON.stringify(getData(BLOG_FOLDER, 2)),
-  );
+  const posts = getData(BLOG_FOLDER, 2);
+  writeFileSync(`${JSON_FOLDER}/posts.json`, JSON.stringify(posts));
 
   // merger json files for search
-  const posts = require(`../${JSON_FOLDER}/posts.json`);
   const search = [...posts];
   writeFileSync(`${JSON_FOLDER}/search.json`, JSON.stringify(search));
 } catch (err) {

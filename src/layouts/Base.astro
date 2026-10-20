@@ -184,11 +184,15 @@ const { title, meta_title, description, image, noindex, canonical } =
     </script>
 
     <!-- MailerLite Universal -->
-    <script is:inline>
+    <script>
+      // @ts-ignore
       (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+      // @ts-ignore
       .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+      // @ts-ignore
       n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
       (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+      // @ts-ignore
       ml('account', '1126073');
     </script>
     <!-- End MailerLite Universal -->

@@ -3,10 +3,10 @@ import BlogCard from "@/components/BlogCard.astro";
 import Share from "@/components/Share.astro";
 import Disqus from "@/helpers/Disqus";
 import { getSinglePage } from "@/lib/contentParser.astro";
-import { render } from 'astro:content';
 import dateFormat from "@/lib/utils/dateFormat";
 import similarItems from "@/lib/utils/similarItems";
 import { humanize, markdownify } from "@/lib/utils/textConverter";
+import { render } from 'astro:content';
 import { FaRegClock, FaRegUserCircle } from "react-icons/fa";
 import ImageMod from "./components/ImageMod.astro";
 
@@ -69,9 +69,9 @@ if(similarPosts.length > 2){
           </li>
         </ul>
         <div class="content mb-10">
-          <Content />
+          <Content></Content>
         </div>
-        <hr>
+        <hr />
         <div class="row items-start justify-between pt-20">
           <div class="flex items-center justify-center">
             <Share
@@ -82,28 +82,27 @@ if(similarPosts.length > 2){
             />
           </div>
         </div>
-        <Disqus className="mt-20" client:idle />
+        <Disqus className="mt-20" client:idle></Disqus>
       </article>
     </div>
-        <!-- Related posts -->
-        { similarPosts.length > 0 && 
-        <div class="p-0" >
-          <h3 class="h3 mb-16 text-center">Related Posts</h3>
-          <div class="row justify-center ml-0 p-0">
-           <div class="row related-posts-row-width md:justify-center">
-            
-            <div class={`grid grid-cols-1 ${similarPosts.length > 1 ? "md:grid-cols-2" : ""} justify-center gap-14 ml-0 pl-0 w-full`}>
-              {similarPosts.map((post) => (
-                <div class="w-full flex justify-center">
-                  <BlogCard data={post} related={true}/>
-                </div>
-              ))}
-            </div>
-
-           </div>
+    <!-- Related posts -->
+    { similarPosts.length > 0 && 
+      <div class="p-0" >
+        <h3 class="h3 mb-16 text-center">Related Posts</h3>
+        <div class="row justify-center ml-0 p-0">
+          <div class="row related-posts-row-width md:justify-center">
+          
+          <div class={`grid grid-cols-1 ${similarPosts.length > 1 ? "md:grid-cols-2" : ""} justify-center gap-14 ml-0 pl-0 w-full`}>
+            {similarPosts.map((post) => (
+              <div class="w-full flex justify-center">
+                <BlogCard data={post} related={true}></BlogCard>
+              </div>
+            ))}
           </div>
-        </div> 
-        }
-      </div>
+
+          </div>
+        </div>
+      </div> 
+    }
   </div>
 </section>

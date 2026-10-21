@@ -183,6 +183,9 @@
 &lt;li&gt;Add a search bar to the call history&lt;/li&gt;
 &lt;li&gt;Add a Regular Expresion check for valid phone numbers, with an error message&lt;/li&gt;
 &lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p style=&quot;font-size: 13px;&quot;&gt; Cover image includes &lt;a href=&quot;https://storyset.com/people&quot;&gt;People illustrations from Storyset&lt;/a&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
 </content:encoded><author>Lautaro Lobo</author></item><item><title>Find the Peak of an Array in C</title><link>https://lautarolobo.xyz/blog/find-peak-of-array-c</link><guid isPermaLink="true">https://lautarolobo.xyz/blog/find-peak-of-array-c</guid><content:encoded>&lt;p&gt;Today, we’re going to explore a classic problem: finding a “peak” in an array.&lt;/p&gt;
 &lt;p&gt;But first, what is a peak? A peak is an element in an array if that said element is NOT smaller than its neighbors. For an array &lt;code&gt;a&lt;/code&gt;, an element &lt;code&gt;a[i]&lt;/code&gt; is a peak if &lt;code&gt;a[i-1] &amp;lt;= a[i] &amp;gt;= a[i+1]&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Going into specifics, the first element &lt;code&gt;a[0]&lt;/code&gt; will be considered a peak if and only if it is greater than or equal to its right neighbor, &lt;code&gt;a[1]&lt;/code&gt;. And for the last element, &lt;code&gt;a[length-1]&lt;/code&gt;, only needs to be greater than or equal to its left neighbor, &lt;code&gt;a[length-2]&lt;/code&gt;.&lt;/p&gt;

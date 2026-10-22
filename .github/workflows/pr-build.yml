@@ -11,16 +11,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [22.x]
-
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
       - name: Build on PR
-        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
-      - run: corepack enable && pnpm install
+          version: 12
+          runtime: node@22
+          cache: true
+      - run: pnpm install
       - run: pnpm run build --if-present

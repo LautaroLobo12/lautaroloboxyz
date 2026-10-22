@@ -11,11 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Push
     steps:
-      - name: git-checkout
-        uses: actions/checkout@v4
-
+      - uses: actions/checkout@v6
       - name: Install all dependencies
-        run: corepack enable && pnpm install
+        with:
+          version: 12
+          runtime: node@22
+          cache: true
+      - run: pnpm install
 
       - name: Build
         run: pnpm run build

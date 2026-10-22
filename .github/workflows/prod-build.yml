@@ -11,8 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Push
     steps:
-      - name: Install all dependencies
+      - name: git-checkout
         uses: actions/checkout@v6
+
+      - name: Install all dependencies
         uses: pnpm/setup@v3
         with:
           version: 12

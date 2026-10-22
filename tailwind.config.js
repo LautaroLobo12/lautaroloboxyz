@@ -19,7 +19,6 @@ if (fonts.font_family.secondary) {
 
 /** @type {import('tailwindcss').Config} */
 export const content = ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"];
-export const safelist = [{ pattern: /^swiper-/ }];
 export const darkMode = "class";
 export const theme = {
   screens: {

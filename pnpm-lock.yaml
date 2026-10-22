@@ -80,9 +80,6 @@ importers:
       remark-toc:
         specifier: ^9.0.0
         version: 9.0.0
-      swiper:
-        specifier: ^11.0.5
-        version: 11.2.10
       typescript:
         specifier: 5.7.2
         version: 5.7.2
@@ -2785,10 +2782,6 @@ packages:
     resolution: {integrity: sha512-bkxnTg1kSU0guhIBmibA6UUhrQmPVA1XsQLN+ylCd+UWzbnLkySOcXpyk1mrl05f+pcaCx2eHb+sp6BgMZWX+Q==}
     engines: {node: '>=16'}
     hasBin: true
-
-  swiper@11.2.10:
-    resolution: {integrity: sha512-RMeVUUjTQH+6N3ckimK93oxz6Sn5la4aDlgPzB+rBrG/smPdCTicXyhxa+woIpopz+jewEloiEE3lKo1h9w2YQ==}
-    engines: {node: '>= 4.7.0'}
 
   tailwind-bootstrap-grid@5.1.0:
     resolution: {integrity: sha512-B++VQUxYyBdOV8M+LCGb1SJaESX/SqFZbbY9mOK5YNiVS2htR83m6RPOppWApSGPK19xSWxzFt/jPUXGfWCa7w==}
@@ -6251,8 +6244,6 @@ snapshots:
       csso: 5.0.5
       picocolors: 1.1.1
       sax: 1.6.1
-
-  swiper@11.2.10: {}
 
   tailwind-bootstrap-grid@5.1.0(tailwindcss@3.4.19(yaml@2.9.1)):
     dependencies:

@@ -12,13 +12,18 @@ jobs:
     name: Build and Push
     steps:
       - name: git-checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install all dependencies
-        run: npm install
+        uses: pnpm/setup@v3
+        with:
+          version: 12
+          runtime: node@22
+          cache: true
+      - run: pnpm install
 
       - name: Build
-        run: npm run build
+        run: pnpm run build
     
       - name: Push
         uses: s0/git-publish-subdir-action@develop

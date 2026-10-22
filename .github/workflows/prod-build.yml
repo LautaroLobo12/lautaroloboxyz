@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Push
     steps:
-      - uses: actions/checkout@v6
       - name: Install all dependencies
+        uses: actions/checkout@v6
         with:
           version: 12
           runtime: node@22
